@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
 
 :root {
   --background: #f8f8f8;
@@ -27,4 +29,36 @@ body {
 
 .nav-item:active {
   transform: scale(0.95);
+}
+
+.separator {
+  @apply border-t border-gray-300 mx-auto;
+}
+
+.H1 {
+  @apply text-5xl font-bold font-sans;
+}
+
+.H2 {
+  @apply text-3xl font-semibold font-sans;
+}
+
+.H3 {
+  @apply text-xl font-semibold font-sans;
+}
+
+.Body {
+  @apply text-sm font-normal font-sans text-gray-900;
+}
+
+.Body-Caption {
+  @apply text-sm font-normal font-sans text-gray-500;
+}
+
+.Input {
+  @apply border border-gray-300 rounded-lg p-2 w-full;
+}
+
+.Primary-Button {
+  @apply w-full bg-primaryBlue text-white font-semibold rounded-lg py-2 shadow-lg; 
 }
