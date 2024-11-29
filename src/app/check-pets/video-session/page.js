@@ -231,6 +231,8 @@ export default function Schedule() {
                   </button>
                 ))}
               </div>
+              {/* Extra Invisible Row */}
+              <div className="h-20"></div>
             </div>
           ) : (
             <div className="text-center text-gray-500">

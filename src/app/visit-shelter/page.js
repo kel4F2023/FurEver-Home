@@ -299,12 +299,14 @@ export default function Schedule() {
                           : 'bg-gray-300 text-gray-700 cursor-not-allowed'
                       }`}
                       onClick={() => handleTimeSelect(time)}
-                      disabled={!selectedShelter} // Disable if no shelter selected
+                      disabled={!selectedShelter}
                     >
                       {time}
                     </button>
                   ))}
                 </div>
+                {/* Extra Invisible Row */}
+                <div className="h-20"></div>
               </div>
             ) : (
               <div className="text-center text-gray-500">
