@@ -1,45 +1,19 @@
 'use client';
-import { useState, useEffect } from 'react';
-import '../globals.css';
+import { useState } from 'react';
+import { useSearchParams } from 'next/navigation'; // Correct import for App Router
+import '../../globals.css';
 
 export default function Schedule() {
-  // Define some shelters in the Bay Area
-  const shelters = [
-    {
-      id: 1,
-      name: 'Bay Area Pet Haven',
-      address: '1234 Market Street, San Francisco, CA 94103',
-    },
-    {
-      id: 2,
-      name: 'Golden Gate Animal Rescue',
-      address: '5678 Castro Street, San Francisco, CA 94114',
-    },
-    {
-      id: 3,
-      name: 'Oakland Furry Friends Shelter',
-      address: '9101 Telegraph Avenue, Oakland, CA 94612',
-    },
-    {
-      id: 4,
-      name: 'San Jose Pet Sanctuary',
-      address: '1213 Santa Clara Street, San Jose, CA 95113',
-    },
-    {
-      id: 5,
-      name: 'Berkeley Animal Care Center',
-      address: '1415 Shattuck Avenue, Berkeley, CA 94709',
-    },
-  ];
+  const searchParams = useSearchParams();
+  const petName = searchParams.get('petName') || 'Your pet'; // Retrieve petName from query parameters
 
   const today = new Date();
-  const [currentMonth, setCurrentMonth] = useState(today.getMonth()); 
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth()); // 0-indexed
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedShelter, setSelectedShelter] = useState(''); // State for shelter selection
-  const [warningMessage, setWarningMessage] = useState(''); // State for warning messages
+  const [warningMessage, setWarningMessage] = useState(''); // New state for warning messages
 
   const dots = {
     // Example dates with dots
@@ -65,8 +39,7 @@ export default function Schedule() {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
-  // Week starts on Sunday
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']; // Week starts on Sunday
 
   // Function to navigate to the previous month
   const handlePrevMonth = () => {
@@ -95,12 +68,12 @@ export default function Schedule() {
 
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-    const totalCells = 42; // 6  x 7 days
+    const totalCells = 42; // 6 weeks x 7 days
     const cells = [];
 
     // Add empty cells before the first day
     for (let i = 0; i < startDay; i++) {
-      cells.push(<div key={`empty-start-${i}`} className="w-12 h-12"></div>);
+      cells.push(<div key={`empty-start-${i}`} className="w-12 h-12"></div>); // Consistent sizing
     }
 
     // Add date cells
@@ -122,7 +95,6 @@ export default function Schedule() {
       cells.push(
         <button
           key={dayKey}
-          aria-disabled={isPastDate || !selectedShelter} // For accessibility
           className={`w-12 h-12 flex flex-col justify-center items-center rounded-lg transition ${
             dots[dayKey]
               ? 'border border-gray-400'
@@ -133,15 +105,12 @@ export default function Schedule() {
               : isPastDate
               ? 'text-gray-400 cursor-not-allowed'
               : 'text-gray-600 hover:bg-gray-200'
-          }`}
+          } relative group`} // Added relative and group for potential tooltip
           onClick={() => {
             if (isPastDate) {
               setWarningMessage('Cannot select past dates.');
-            } else if (!selectedShelter) {
-              setWarningMessage('Please select a shelter first.');
             } else {
               setSelectedDate(dayKey);
-              setSelectedTime(null); // Reset selected time when date changes
               setWarningMessage(''); // Clear any existing warning messages
             }
           }}
@@ -168,7 +137,7 @@ export default function Schedule() {
     );
   };
 
-  // Disabling Previous Month Button
+  // **Updated Logic for Disabling Previous Month Button**
   const isPrevMonthDisabled = currentYear === today.getFullYear() && currentMonth === today.getMonth();
 
   // Function to handle time slot selection
@@ -188,17 +157,6 @@ export default function Schedule() {
     setIsPopupOpen(false);
   };
 
-  // Auto-dismiss the warning message after 3 seconds
-  useEffect(() => {
-    if (warningMessage) {
-      const timer = setTimeout(() => {
-        setWarningMessage('');
-      }, 3000); // Dismiss after 3 seconds
-
-      return () => clearTimeout(timer); // Cleanup the timer on unmount or when warningMessage changes
-    }
-  }, [warningMessage]);
-
   // Format selected date for display
   const formattedSelectedDate = selectedDate
     ? new Date(selectedDate).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
@@ -213,43 +171,18 @@ export default function Schedule() {
         </div>
       )}
 
-      {/* Shelter Selection Dropdown */}
-      <div className="mb-4">
-        <label htmlFor="shelter" className="block text-lg font-medium text-gray-700 mb-2">
-          Select a Shelter:
-        </label>
-        <select
-          id="shelter"
-          value={selectedShelter}
-          onChange={(e) => {
-            setSelectedShelter(e.target.value);
-            setSelectedDate(null); // Reset selected date and time when shelter changes
-            setSelectedTime(null);
-            setWarningMessage(''); // Clear any existing warning messages
-          }}
-          className="block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-        >
-          <option value="">-- Choose a Shelter --</option>
-          {shelters.map((shelter) => (
-            <option key={shelter.id} value={shelter.id}>
-              {shelter.name} - {shelter.address}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <h1 className="text-3xl font-bold pb-4">In-Person Visit Appointment </h1>
+      <h1 className="text-3xl font-bold pb-4">Schedule a Video Session</h1>
       <div className="separator mb-6"></div>
 
       <div className="flex flex-col md:flex-row">
-        {/* Calendar Section */}
+    
         <div className="w-full md:w-1/2 px-1"> 
-        
+
           <div className="flex items-center justify-between mb-4">
             <button
               onClick={handlePrevMonth}
-              disabled={isPrevMonthDisabled} // only disable if no shelter selected
-              className={`px-3 py-1 rounded ${isPrevMonthDisabled || !selectedShelter ? 'text-gray-300 cursor-not-allowed' : 'text-blue-500 hover:bg-gray-200'}`}
+              disabled={isPrevMonthDisabled}
+              className={`px-3 py-1 rounded ${isPrevMonthDisabled ? 'text-gray-300 cursor-not-allowed' : 'text-blue-500 hover:bg-gray-200'}`}
             >
               &lt;
             </button>
@@ -258,8 +191,7 @@ export default function Schedule() {
             </div>
             <button
               onClick={handleNextMonth}
-              disabled={!selectedShelter} // Disable if no shelter selected
-              className={`px-3 py-1 rounded ${!selectedShelter ? 'text-gray-300 cursor-not-allowed' : 'text-blue-500 hover:bg-gray-200'}`}
+              className="px-3 py-1 rounded text-blue-500 hover:bg-gray-200"
             >
               &gt;
             </button>
@@ -283,39 +215,28 @@ export default function Schedule() {
 
         {/* Available Times Section */}
         <div className="w-full md:w-1/2 mt-6 md:mt-0 md:pl-8">
-          {selectedShelter ? ( // Ensure shelter is selected
-            selectedDate ? (
-              <div>
-                <h2 className="text-2xl font-semibold mb-4">
-                  Available Times for {formattedSelectedDate}
-                </h2>
-                <div className="grid grid-cols-2 gap-4">
-                  {availableTimes.map((time) => (
-                    <button
-                      key={time}
-                      className={`w-full py-2 px-4 rounded-lg transition ${
-                        selectedShelter
-                          ? 'bg-blue-500 text-white hover:bg-blue-600'
-                          : 'bg-gray-300 text-gray-700 cursor-not-allowed'
-                      }`}
-                      onClick={() => handleTimeSelect(time)}
-                      disabled={!selectedShelter}
-                    >
-                      {time}
-                    </button>
-                  ))}
-                </div>
-                {/* Extra Invisible Row */}
-                <div className="h-20"></div>
+          {selectedDate ? (
+            <div>
+              <h2 className="text-2xl font-semibold mb-4">
+                Available Times for {formattedSelectedDate}
+              </h2>
+              <div className="grid grid-cols-2 gap-4">
+                {availableTimes.map((time) => (
+                  <button
+                    key={time}
+                    className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+                    onClick={() => handleTimeSelect(time)}
+                  >
+                    {time}
+                  </button>
+                ))}
               </div>
-            ) : (
-              <div className="text-center text-gray-500">
-                Please select a date to view available times.
-              </div>
-            )
+              {/* Extra Invisible Row */}
+              <div className="h-20"></div>
+            </div>
           ) : (
             <div className="text-center text-gray-500">
-              Please select a shelter to proceed with scheduling.
+              Please select a date to view available times.
             </div>
           )}
         </div>
@@ -327,7 +248,7 @@ export default function Schedule() {
           <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md">
             <h3 className="text-xl font-semibold mb-4">Confirmation</h3>
             <p className="mb-6">
-              Your in-person visit is confirmed for {selectedTime} on {formattedSelectedDate}.
+              {petName} video session with Amy Marshell is confirmed for {selectedTime}, {formattedSelectedDate}.
             </p>
             <div className="flex justify-end space-x-4">
               <button
