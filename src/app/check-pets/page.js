@@ -78,6 +78,7 @@ export default function CheckPets() {
 
     return (
         <div className="flex flex-col items-center min-h-screen bg-white gap-8 p-5">
+            <h1 className="H1">Search For Pets</h1>
             {/* Search Card */}
             <SearchCard
                 onSearch={handleSearch}
@@ -97,7 +98,8 @@ export default function CheckPets() {
                             name={pet.name}
                             breed={pet.breed}
                             image={pet.image}
-                            onDetailsClick={() => {}}
+                            onDetailsClick={() => {
+                            }}
                         />
                     </Link>
                 ))}

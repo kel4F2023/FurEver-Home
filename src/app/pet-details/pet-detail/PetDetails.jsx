@@ -83,15 +83,19 @@ export default function PetDetails({
                 <h2 className="text-black text-[32px] font-semibold font-['Inter'] leading-[38.40px] mb-4 H2">
                     Special Attentions
                 </h2>
-                <div className="">
+                <div className="flex flex-col space-y-4 mt-4">
                     {specialAttention && specialAttention.length > 0 ? (
                         specialAttention.map((item, index) => (
-                            <p
-                                key={index}
-                                className="text-lg font-light leading-normal text-black H3"
-                            >
-                                {item}
-                            </p>
+                            <div key={index} className="flex items-center gap-4">
+                                <img
+                                    src="/footprint.png"
+                                    alt={`Special Attention ${index + 1}`}
+                                    className="w-8 h-8 rounded-md object-cover"
+                                />
+                                <p className="text-lg font-light leading-normal text-black H3">
+                                    {item}
+                                </p>
+                            </div>
                         ))
                     ) : (
                         <p className="text-black text-lg font-light leading-normal H3">None</p>
