@@ -10,11 +10,11 @@ export default function PetCard({ name, breed, image, onDetailsClick }) {
                 ) : null}
             </div>
 
-            <div className="w-[201.40px] h-[50px] left-[125.50px] top-[32px] absolute text-black text-4xl font-normal font-['Inter'] leading-[50.40px]">
+            <div className="w-[201.40px] h-[50px] left-[125.50px] top-[32px] absolute text-black text-4xl font-normal font-['Inter'] leading-[50.40px] H2">
                 {name}
             </div>
 
-            <div className="w-[116.85px] h-8 left-[128.50px] top-[80px] absolute text-[#666666] text-lg font-normal font-['Inter'] leading-[25.20px]">
+            <div className="w-[116.85px] h-8 left-[128.50px] top-[70px] absolute text-lg font-normal font-['Inter'] leading-[25.20px] Body">
                 {breed}
             </div>
 
