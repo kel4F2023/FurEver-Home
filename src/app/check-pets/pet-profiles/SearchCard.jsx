@@ -29,10 +29,10 @@ export default function SearchCard({ onSearch, onClear, onInputChange }) {
             </div>
 
             <div
-                className="w-20 h-10 p-3 left-[120px] top-[320px] absolute bg-white rounded-lg justify-center items-center gap-2 inline-flex cursor-pointer border border-primaryBlue shadow-lg"
+                className="w-20 h-10 p-3 left-[120px] top-[320px] absolute bg-white rounded-lg justify-center items-center gap-2 inline-flex cursor-pointer border border-primaryBlue shadow-lg paragraph"
                 onClick={onClear}
             >
-            <div className="text-primaryBlue font-normal text-sm font-['Inter'] leading-none">Clear</div>
+            <div className="font-normal text-sm font-['Inter'] leading-none paragraph text-primaryBlue">Clear</div>
         </div>
 
             <div className="w-[340px] h-10 left-[20px] top-[20px] absolute">
@@ -41,7 +41,7 @@ export default function SearchCard({ onSearch, onClear, onInputChange }) {
                         type="number"
                         placeholder="Zip-code   e.g 95112"
                         onChange={(e) => handleChange("zipCode", e.target.value)}
-                        className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] text-[#1e1e1e] text-base font-normal font-['Inter'] leading-none Input"
+                        className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] text-[#1e1e1e] text-base font-normal font-['Inter'] leading-none Input Body"
                     />
                 </div>
             </div>
@@ -52,7 +52,7 @@ export default function SearchCard({ onSearch, onClear, onInputChange }) {
                     type="text"
                     placeholder="Species   e.g dog"
                     onChange={(e) => handleChange("species", e.target.value)}
-                    className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] text-[#1e1e1e] text-base font-normal font-['Inter'] leading-none Input"
+                    className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] text-[#1e1e1e] text-base font-normal font-['Inter'] leading-none Input Body"
                 />
             </div>
 
@@ -62,7 +62,7 @@ export default function SearchCard({ onSearch, onClear, onInputChange }) {
                     type="text"
                     placeholder="Gender   e.g male/female"
                     onChange={(e) => handleChange("gender", e.target.value)}
-                    className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] text-[#1e1e1e] text-base font-normal font-['Inter'] leading-none Input"
+                    className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] text-[#1e1e1e] text-base font-normal font-['Inter'] leading-none Input Body"
                 />
             </div>
 
@@ -72,7 +72,7 @@ export default function SearchCard({ onSearch, onClear, onInputChange }) {
                     type="text"
                     placeholder="Color   e.g white"
                     onChange={(e) => handleChange("color", e.target.value)}
-                    className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] text-[#1e1e1e] text-base font-normal font-['Inter'] leading-none Input"
+                    className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] text-[#1e1e1e] text-base font-normal font-['Inter'] leading-none Input Body"
                 />
             </div>
 
@@ -82,7 +82,7 @@ export default function SearchCard({ onSearch, onClear, onInputChange }) {
                     type="text"
                     placeholder="Breed   e.g shiba inu"
                     onChange={(e) => handleChange("breed", e.target.value)}
-                    className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] text-[#1e1e1e] text-base font-normal font-['Inter'] leading-none Input"
+                    className="self-stretch px-4 py-3 bg-white rounded-lg border border-[#d9d9d9] text-[#1e1e1e] text-base font-normal font-['Inter'] leading-none Input Body"
                 />
             </div>
         </div>

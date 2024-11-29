@@ -19,10 +19,10 @@ export default function PetCard({ name, breed, image, onDetailsClick }) {
             </div>
 
             <div
-                className="w-[72.20px] h-10 p-3 left-[288.80px] top-[52px] absolute bg-[#4cc9fe] rounded-lg justify-center items-center gap-2 inline-flex cursor-pointer"
+                className="w-[72.20px] h-10 p-3 left-[288.80px] top-[52px] absolute bg-[#00A9FF] rounded-lg justify-center items-center gap-2 inline-flex cursor-pointer"
                 onClick={onDetailsClick}
             >
-                <div className="text-white text-base font-normal font-['Inter'] leading-none">
+                <div className="text-white text-base font-normal font-['Inter'] leading-none paragraph">
                     Details
                 </div>
             </div>

@@ -58,11 +58,11 @@ export default function PetDetails({
 
             {/* Buttons */}
             <div className="flex gap-8 mb-8">
-                <div className="w-[180px] p-3 bg-[#1bb0ff] rounded-lg justify-center items-center gap-2 flex shadow-lg">
-                    <div className="text-white font-normal font-['Inter'] leading-normal">Fill Application</div>
+                <div className="w-[180px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg">
+                    <div className="text-white font-normal font-['Inter'] leading-normal paragraph">Fill Application</div>
                 </div>
                 <div className="w-[180px] p-3 bg-white/70 rounded-lg justify-center items-center gap-2 flex shadow-lg border border-primaryBlue">
-                    <div className="text-primaryBlue font-normal font-['Inter'] leading-normal">Video Session</div>
+                    <div className="text-primaryBlue font-normal font-['Inter'] leading-normal paragraph">Video Session</div>
                 </div>
             </div>
 
@@ -70,9 +70,9 @@ export default function PetDetails({
             <div className="w-[380px] h-[0px] border border-[#808080]/60 mb-8"></div>
 
             {/* Story Section */}
-            <div className="w-[340px] h-auto text-[#666666] text-xl font-normal font-['Inter'] leading-normal mb-8">
-                <h2 className="text-black text-[32px] font-semibold font-['Inter'] leading-[38.40px] mb-4 H2">MY STORY</h2>
-                <p className="text-gray-600 text-[18px] font-['Inter'] p-3 Body">{story}</p>
+            <div className="w-[340px] h-auto text-[#344C64] text-xl font-normal font-['Inter'] leading-normal mb-8">
+                <h2 className="text-black text-[32px] font-semibold font-['Inter'] leading-[38.40px] mb-4 H2">My Story</h2>
+                <p className="text-[18px] font-['Inter'] H3 text-black">{story}</p>
             </div>
 
             {/* Divider */}
@@ -83,17 +83,20 @@ export default function PetDetails({
                 <h2 className="text-black text-[32px] font-semibold font-['Inter'] leading-[38.40px] mb-4 H2">
                     Special Attentions
                 </h2>
-                <ul className="list-disc ml-6 space-y-2 p-3">
+                <div className="">
                     {specialAttention && specialAttention.length > 0 ? (
                         specialAttention.map((item, index) => (
-                            <li key={index} className="text-black text-lg font-light leading-normal Body">
+                            <p
+                                key={index}
+                                className="text-lg font-light leading-normal text-black H3"
+                            >
                                 {item}
-                            </li>
+                            </p>
                         ))
                     ) : (
-                        <li className="text-black text-lg font-light leading-normal">None</li>
+                        <p className="text-black text-lg font-light leading-normal H3">None</p>
                     )}
-                </ul>
+                </div>
             </div>
             <div className="mt-28"/>
         </div>
