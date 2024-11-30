@@ -183,7 +183,7 @@ export default function CareLogs() {
       <p className="H2">Metrics</p>
 
       {/* Food Intake */}
-      <div class="flex items-center gap-4 mt-4">
+      <div className="flex items-center gap-4 mt-4">
         <img src="/pet-food.png" alt="Food-Intake" className="w-16 h-16 rounded-md object-cover" />
         <div className="flex flex-col">
           <p className="H3">Food Intake (cups)</p>
@@ -195,7 +195,7 @@ export default function CareLogs() {
       </div>
 
       {/* Exercise */}
-      <div class="flex items-center gap-4 mt-4">
+      <div className="flex items-center gap-4 mt-4">
         <img src="/walk-the-pet.png" alt="Exercise" className="w-16 h-16 rounded-md object-cover" />
         <div className="flex flex-col">
           <p className="H3">Exercise (min)</p>
@@ -207,7 +207,7 @@ export default function CareLogs() {
       </div>
 
       {/* Weight */}
-      <div class="flex items-center gap-4 mt-4">
+      <div className="flex items-center gap-4 mt-4">
         <img src="/scale.png" alt="Weight" className="w-16 h-16 rounded-md object-cover" />
         <div className="flex flex-col">
           <p className="H3">Weight (kg)</p>
