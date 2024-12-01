@@ -19,7 +19,7 @@ export default function Home() {
       <Link href="/check-pets">
         <MenuCard 
           title="Look for pets" 
-          description="Browse through pets that are looking for a new home"
+          description="Browse and adopt your perfect companion and Meet your favorite pet virtually one-on-one!"
           img="/check-pets-icon.png"
           bgColor='#fde8e7'
         />
@@ -27,7 +27,7 @@ export default function Home() {
       <Link href="/care-logs">
         <MenuCard 
           title="Daily care logs" 
-          description="Track and manage your pet care activities"
+          description="Log your pet’s daily activity and see tailored recommendations"
           img="/care-logs-icon.png"
           bgColor='rgba(52, 199, 89, 0.35)'
         />
@@ -35,7 +35,7 @@ export default function Home() {
       <Link href="/my-profile">
         <MenuCard 
           title="My profile" 
-          description="Check your adoption applications, appointments, and more"
+          description="Check your adoption applications, appointments and more"
           img="/my-profile-icon.png"
           bgColor='rgba(255, 186, 2, 0.20)'
         />

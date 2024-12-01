@@ -66,3 +66,13 @@ body {
 .Primary-Button {
   @apply w-full bg-primaryBlue text-white font-semibold rounded-lg py-2 shadow-lg; 
 }
+
+.secondary-btn {
+  color: #68949D;
+  border: 1px solid #68949D;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  padding: 10px;
+}

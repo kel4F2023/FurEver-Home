@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <TopNavbar />
-        {children}
+        <main className="pb-[90px]">{children}</main>
         <BottomNavbar />
       </body>
     </html>
