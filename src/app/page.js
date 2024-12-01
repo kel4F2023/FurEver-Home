@@ -12,7 +12,7 @@ export default function Home() {
         <MenuCard 
           title="Schedule a visit" 
           description="Reserve a time to meet your local pet shelter in person" 
-          img="/visit-shelter-icon.png"
+          img="/visit-shelter-img.png"
           bgColor='rgba(28, 177, 255, 0.26)'
         />
       </Link>
@@ -20,7 +20,7 @@ export default function Home() {
         <MenuCard 
           title="Look for pets" 
           description="Browse and adopt your perfect companion and Meet your favorite pet virtually one-on-one!"
-          img="/check-pets-icon.png"
+          img="/check-pets-img.png"
           bgColor='#fde8e7'
         />
       </Link>
@@ -28,7 +28,7 @@ export default function Home() {
         <MenuCard 
           title="Daily care logs" 
           description="Log your pet’s daily activity and see tailored recommendations"
-          img="/care-logs-icon.png"
+          img="/care-logs-img.png"
           bgColor='rgba(52, 199, 89, 0.35)'
         />
       </Link>
@@ -36,7 +36,7 @@ export default function Home() {
         <MenuCard 
           title="My profile" 
           description="Check your adoption applications, appointments and more"
-          img="/my-profile-icon.png"
+          img="/my-profile-img.png"
           bgColor='rgba(255, 186, 2, 0.20)'
         />
       </Link>
