@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 
 export default function PetDetails({
                                        name,
@@ -12,6 +13,10 @@ export default function PetDetails({
                                        specialAttention,
                                        image,
                                    }) {
+                                    const router = useRouter();
+                                    const handleVideoSessionClick = () => {
+                                        router.push(`/check-pets/video-session?petName=${name}`);
+                                    };
     return (
         <div className="w-[440px] mx-auto bg-white py-8 flex flex-col items-center">
             {/* Circular Image Section */}
@@ -61,7 +66,9 @@ export default function PetDetails({
                 <div className="w-[180px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg">
                     <div className="text-white font-normal font-['Inter'] leading-normal paragraph">Fill Application</div>
                 </div>
-                <div className="w-[180px] p-3 bg-white/70 rounded-lg justify-center items-center gap-2 flex shadow-lg border border-primaryBlue">
+                <div className="w-[180px] p-3 bg-white/70 rounded-lg justify-center items-center gap-2 flex shadow-lg border border-primaryBlue"
+                    onClick={handleVideoSessionClick}
+                >
                     <div className="text-primaryBlue font-normal font-['Inter'] leading-normal paragraph">Video Session</div>
                 </div>
             </div>

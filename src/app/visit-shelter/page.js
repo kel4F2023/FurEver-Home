@@ -212,6 +212,8 @@ export default function Schedule() {
           {warningMessage}
         </div>
       )}
+      
+      <h1 className="text-3xl font-bold pb-4">In-Person Visit Appointment </h1>
 
       {/* Shelter Selection Dropdown */}
       <div className="mb-4">
@@ -238,7 +240,6 @@ export default function Schedule() {
         </select>
       </div>
 
-      <h1 className="text-3xl font-bold pb-4">In-Person Visit Appointment </h1>
       <div className="separator mb-6"></div>
 
       <div className="flex flex-col md:flex-row">
