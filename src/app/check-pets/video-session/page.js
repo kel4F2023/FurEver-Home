@@ -101,7 +101,7 @@ export default function Schedule() {
               : 'border-transparent'
           } ${
             isSelected
-              ? 'bg-blue-500 text-white'
+              ? 'bg-[#00A9FF] text-white'
               : isPastDate
               ? 'text-gray-400 cursor-not-allowed'
               : 'text-gray-600 hover:bg-gray-200'
@@ -225,7 +225,7 @@ export default function Schedule() {
                 {availableTimes.map((time) => (
                   <button
                     key={time}
-                    className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+                    className="w-full py-2 px-4 bg-[#00A9FF] text-white rounded-lg hover:bg-[#008FCC] transition"
                     onClick={() => handleTimeSelect(time)}
                   >
                     {time}
@@ -254,13 +254,13 @@ export default function Schedule() {
             <div className="flex justify-end space-x-4">
               <button
                 onClick={handleClosePopup}
-                className="w-[180px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg"
+                className="w-[180px] p-3 bg-white/70 rounded-lg justify-center items-center gap-2 flex shadow-lg border border-primaryBlue"
               >
                 Back
               </button>
               <button
                 onClick={handleConfirm}
-                className="w-[180px] p-3 bg-white/70 rounded-lg justify-center items-center gap-2 flex shadow-lg border border-primaryBlue"
+                className="w-[180px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg"
               >
                 Yes
               </button>
