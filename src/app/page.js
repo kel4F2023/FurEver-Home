@@ -12,31 +12,31 @@ export default function Home() {
         <MenuCard 
           title="Schedule a visit" 
           description="Reserve a time to meet your local pet shelter in person" 
-          img="/visit-shelter-icon.png"
+          img="/visit-shelter-img.jpg"
           bgColor='rgba(28, 177, 255, 0.26)'
         />
       </Link>
       <Link href="/check-pets">
         <MenuCard 
           title="Look for pets" 
-          description="Browse through pets that are looking for a new home"
-          img="/check-pets-icon.png"
+          description="Browse and adopt your perfect companion and Meet your favorite pet virtually one-on-one!"
+          img="/check-pets-img.jpg"
           bgColor='#fde8e7'
         />
       </Link>
       <Link href="/care-logs">
         <MenuCard 
           title="Daily care logs" 
-          description="Track and manage your pet care activities"
-          img="/care-logs-icon.png"
+          description="Log your pet’s daily activity and see tailored recommendations"
+          img="/care-logs-img.jpg"
           bgColor='rgba(52, 199, 89, 0.35)'
         />
       </Link>
       <Link href="/my-profile">
         <MenuCard 
           title="My profile" 
-          description="Check your adoption applications, appointments, and more"
-          img="/my-profile-icon.png"
+          description="Check your adoption applications, appointments and more"
+          img="/my-profile-img.jpg"
           bgColor='rgba(255, 186, 2, 0.20)'
         />
       </Link>
