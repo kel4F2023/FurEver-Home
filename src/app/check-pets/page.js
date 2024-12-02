@@ -77,8 +77,10 @@ export default function CheckPets() {
 
 
     return (
-        <div className="flex flex-col items-center min-h-screen bg-white gap-8 p-5">
-            <h1 className="H1 -ml-9">Search For Pets</h1>
+        <div className="flex flex-col items-center min-h-screen bg-white gap-4 p-5">
+            <h1 className="H1 -ml-4">Search For Pets</h1>
+            <div className="w-[380px] h-[0px] border border-gray-200"></div>
+
             {/* Search Card */}
             <SearchCard
                 onSearch={handleSearch}
@@ -107,7 +109,6 @@ export default function CheckPets() {
                     <p>No pets found matching your criteria.</p>
                 )}
             </div>
-            <div className="mt-16"/>
         </div>
     );
 }

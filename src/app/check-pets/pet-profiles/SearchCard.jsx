@@ -25,7 +25,7 @@ export default function SearchCard({ onSearch, onClear, onInputChange }) {
                 className="w-20 h-10 p-3 left-[20px] top-[320px] absolute bg-[#00A9FF] rounded-lg justify-center items-center gap-2 inline-flex cursor-pointer shadow-lg"
                 onClick={() => onSearch(formData)}
             >
-                <div className="text-white font-normal text-sm font-['Inter'] leading-none">Search</div>
+                <div className="text-white font-normal text-sm font-['Inter'] leading-none paragraph">Search</div>
             </div>
 
             <div

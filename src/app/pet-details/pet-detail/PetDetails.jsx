@@ -18,7 +18,7 @@ export default function PetDetails({
                                         router.push(`/check-pets/video-session?petName=${name}`);
                                     };
     return (
-        <div className="w-[440px] mx-auto bg-white py-8 flex flex-col items-center">
+        <div className="mx-auto bg-white py-8 flex flex-col items-center">
             {/* Circular Image Section */}
             <div className="w-[300px] h-[300px] rounded-full overflow-hidden bg-neutral-200 mb-8">
                 <img
@@ -109,7 +109,6 @@ export default function PetDetails({
                     )}
                 </div>
             </div>
-            <div className="mt-28"/>
         </div>
     );
 }
