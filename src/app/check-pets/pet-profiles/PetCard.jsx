@@ -1,25 +1,34 @@
 "use client";
 export default function PetCard({ name, breed, image, onDetailsClick }) {
     return (
-        <div className="w-[380px] h-[140px] relative">
-            <div className="w-[380px] h-[140px] left-0 top-0 absolute bg-[#f2f2f7] rounded-[20px] shadow border-black" />
-
-            <div className="w-[100px] h-[100px] left-[15px] top-[20px] absolute rounded-full overflow-hidden bg-black">
+        <div className="relative w-full min-w-[300px] h-[140px] bg-[#f2f2f7] rounded-[20px] shadow flex items-center px-4">
+            {/* Circular Image Section */}
+            <div className="w-[100px] h-[100px] rounded-full overflow-hidden bg-black flex-shrink-0">
                 {image ? (
-                    <img src={image} alt={name} className="w-full h-full object-cover" />
+                    <img
+                        src={image}
+                        alt={name}
+                        className="w-full h-full object-cover"
+                    />
                 ) : null}
             </div>
 
-            <div className="w-[201.40px] h-[50px] left-[125.50px] top-[32px] absolute text-black text-4xl font-normal font-['Inter'] leading-[50.40px] H2">
-                {name}
+            {/* Content Section */}
+            <div className="flex-grow ml-3">
+                {/* Pet Name */}
+                <div className="text-black text-4xl font-normal font-['Inter'] leading-[50.40px] H2">
+                    {name}
+                </div>
+
+                {/* Pet Breed */}
+                <div className="text-lg font-normal font-['Inter'] leading-[25.20px] Body mt-2">
+                    {breed}
+                </div>
             </div>
 
-            <div className="w-[116.85px] h-8 left-[128.50px] top-[70px] absolute text-lg font-normal font-['Inter'] leading-[25.20px] Body">
-                {breed}
-            </div>
-
+            {/* Details Button */}
             <div
-                className="w-[72.20px] h-10 p-3 left-[288.80px] top-[52px] absolute bg-[#00A9FF] rounded-lg justify-center items-center gap-2 inline-flex cursor-pointer"
+                className="w-[62px] h-[40px] bg-[#00A9FF] rounded-lg flex justify-center items-center cursor-pointer flex-shrink-0"
                 onClick={onDetailsClick}
             >
                 <div className="text-white text-base font-normal font-['Inter'] leading-none paragraph">
