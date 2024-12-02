@@ -1,17 +1,21 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 export default function PetDetails({
-                                       name,
-                                       location,
-                                       age,
-                                       gender,
-                                       color,
-                                       breed,
-                                       petId,
-                                       story,
-                                       specialAttention,
-                                       image,
-                                   }) {
+    name,
+    location,
+    age,
+    gender,
+    color,
+    breed,
+    petId,
+    story,
+    specialAttention,
+    image,
+}) {
+    const router = useRouter();
+
     return (
         <div className="w-[440px] mx-auto bg-white py-8 flex flex-col items-center">
             {/* Circular Image Section */}
@@ -58,7 +62,10 @@ export default function PetDetails({
 
             {/* Buttons */}
             <div className="flex gap-8 mb-8">
-                <div className="w-[180px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg">
+                <div
+                    onClick={() => router.push("/fill-application")} // Route to the application form
+                    className="w-[180px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg cursor-pointer"
+                >
                     <div className="text-white font-normal font-['Inter'] leading-normal paragraph">Fill Application</div>
                 </div>
                 <div className="w-[180px] p-3 bg-white/70 rounded-lg justify-center items-center gap-2 flex shadow-lg border border-primaryBlue">
@@ -102,7 +109,7 @@ export default function PetDetails({
                     )}
                 </div>
             </div>
-            <div className="mt-28"/>
+            <div className="mt-28" />
         </div>
     );
 }
