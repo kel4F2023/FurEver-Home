@@ -1,20 +1,139 @@
-import Link from 'next/link';
+'use client';
+
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
+import { InpersonAppointmentCard, VideoAppointmentCard } from './components/AppointmentCard';
+import CancelConfirm from './components/CancelConfirm';
 
 export default function Appointments() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
+
+  const [upcomingAppointments, setUpcomingAppointments] = useState([
+    {
+      id: uuidv4(),
+      type: 'video',
+      date: '6 Dec. 2024',
+      time: '10:00 AM',
+      petName: 'Timber',
+      avatarPath: '/shiba.jpg',
+    },
+    {
+      id: uuidv4(),
+      type: 'inperson',
+      date: '13 Dec. 2024',
+      time: '9:40 AM',
+      address: 'Avenue, city, state',
+    },
+    {
+      id: uuidv4(),
+      type: 'video',
+      date: '16 Dec. 2024',
+      time: '9:40 AM',
+      petName: 'Lucas',
+      avatarPath: '/Lucas.png',
+    }
+  ]);
+  const [pastAppointments, setPastAppointments] = useState([
+    {
+      id: uuidv4(),
+      type: 'video',
+      date: '2024-11-7',
+      time: '4:30 PM',
+      petName: 'Hailey',
+      avatarPath: '/hailey.png',
+    },
+  ]);
+
+  const cancelBtnHandler = (appointmentId) => {
+    setSelectedAppointmentId(appointmentId);
+    setIsPopupOpen(true);
+  };
+
+  const cancelCancelHandler = () => {
+    setIsPopupOpen(false);
+  };
+
+  const removeAppointment = () => {
+    console.log('Removing appointment with id:', selectedAppointmentId);
+    setUpcomingAppointments(upcomingAppointments.filter((appointment) => appointment.id !== selectedAppointmentId));
+    setPastAppointments(pastAppointments.filter((appointment) => appointment.id !== selectedAppointmentId));
+  };
+
+  const confimCancelHandler = () => {
+    removeAppointment();
+    setIsPopupOpen(false);
+  };
+
   return (
-    <div className="p-4">
-      <div className="flex items-center justify-between mb-4">
-        <Link href="/my-profile">
-          <button className="px-4 py-2 primary-color rounded-lg hover:bg-gray-200">
-            ← Back
-          </button>
-        </Link>
-        <h1 className="text-2xl font-bold text-center mx-auto">My Appointments</h1>
-        <div className="invisible px-4 py-2">← Back</div>
+    <div className="p-4 relative">
+      <div>
+        <h2 className="H2">Upcoming Appointments</h2>
+        <hr className='mb-6' />
+        <div>
+          {upcomingAppointments.length > 0 ? (upcomingAppointments.map((appointment) => (
+            <div key={appointment.id} className='flex justify-center'>
+              {appointment.type === 'inperson' ? (
+                <InpersonAppointmentCard
+                  id={appointment.id}
+                  date={appointment.date}
+                  time={appointment.time}
+                  address={appointment.address}
+                  cancelBtnHandler={cancelBtnHandler}
+                />
+              ) : (
+                <VideoAppointmentCard
+                  id={appointment.id}
+                  date={appointment.date}
+                  time={appointment.time}
+                  petName={appointment.petName}
+                  avatarPath={appointment.avatarPath}
+                  cancelBtnHandler={cancelBtnHandler}
+                />
+              )}
+            </div>
+          ))) : (<p>No upcoming appointments</p>)}
+        </div>
+      </div >
+      <div>
+        <h2 className="H2">Past Appointments</h2>
+        <hr className='mb-6' />
+        <div>
+          {pastAppointments.length > 0 ? (pastAppointments.map((appointment) => (
+            <div key={appointment.id} className='flex justify-center'>
+              {appointment.type === 'inperson' ? (
+                <InpersonAppointmentCard
+                  id={appointment.id}
+                  date={appointment.date}
+                  time={appointment.time}
+                  address={appointment.address}
+                  cancelBtnHandler={cancelBtnHandler}
+                />
+              ) : (
+                <VideoAppointmentCard
+                  id={appointment.id}
+                  date={appointment.date}
+                  time={appointment.time}
+                  petName={appointment.petName}
+                  avatarPath={appointment.avatarPath}
+                  cancelBtnHandler={cancelBtnHandler}
+                />
+              )}
+            </div>
+          ))) : (<p>No past appointments</p>)}
+        </div>
       </div>
-      <div className="text-gray-500">
-        No appointments scheduled
-      </div>
-    </div>
+      {
+        isPopupOpen && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <CancelConfirm
+              cancelCancelHandler={cancelCancelHandler}
+              confimCancelHandler={confimCancelHandler}
+            />
+          </div>
+        )
+      }
+    </div >
   );
 }

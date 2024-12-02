@@ -101,7 +101,7 @@ export default function Schedule() {
               : 'border-transparent'
           } ${
             isSelected
-              ? 'bg-blue-500 text-white'
+              ? 'bg-[#00A9FF] text-white'
               : isPastDate
               ? 'text-gray-400 cursor-not-allowed'
               : 'text-gray-600 hover:bg-gray-200'
@@ -171,7 +171,8 @@ export default function Schedule() {
         </div>
       )}
 
-      <h1 className="text-3xl font-bold pb-4">Schedule a Video Session</h1>
+      
+      <h1 className="H1 pb-4">Schedule a Video Session</h1>
       <div className="separator mb-6"></div>
 
       <div className="flex flex-col md:flex-row">
@@ -224,7 +225,7 @@ export default function Schedule() {
                 {availableTimes.map((time) => (
                   <button
                     key={time}
-                    className="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+                    className="w-full py-2 px-4 bg-[#00A9FF] text-white rounded-lg hover:bg-[#008FCC] transition"
                     onClick={() => handleTimeSelect(time)}
                   >
                     {time}
@@ -253,13 +254,13 @@ export default function Schedule() {
             <div className="flex justify-end space-x-4">
               <button
                 onClick={handleClosePopup}
-                className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition"
+                className="w-[180px] p-3 bg-white/70 rounded-lg justify-center items-center gap-2 flex shadow-lg border border-primaryBlue"
               >
                 Back
               </button>
               <button
                 onClick={handleConfirm}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                className="w-[180px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg"
               >
                 Yes
               </button>
