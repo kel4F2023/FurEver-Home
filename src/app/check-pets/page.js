@@ -78,8 +78,8 @@ export default function CheckPets() {
 
     return (
         <div className="flex flex-col items-center min-h-screen bg-white gap-4 p-5">
-            <h1 className="H1 -ml-4">Search For Pets</h1>
-            <div className="w-[380px] h-[0px] border border-gray-200"></div>
+            <h1 className="H1 -ml-4 w-full max-w-[90%]">Search For Pets</h1>
+            <div className="w-full max-w-[90%] h-[0px] border border-gray-200"></div>
 
             {/* Search Card */}
             <SearchCard
@@ -88,13 +88,15 @@ export default function CheckPets() {
                 onInputChange={(data) => setSearchData(data)}
             />
 
+            <div className="w-full max-w-[90%] h-[0px] border border-gray-200"></div>
+
             {/* Pet Cards */}
-            <div className="flex flex-col items-center justify-center gap-6">
+            <div className="flex flex-col items-center justify-center gap-6 w-full">
                 {(filteredPets === null ? pets : filteredPets).map((pet) => (
                     <Link
                         key={pet.id}
                         href={`/pet-details/${pet.id}`}
-                        className="block"
+                        className="block w-full max-w-[90%]"
                     >
                         <PetCard
                             name={pet.name}

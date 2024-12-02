@@ -29,12 +29,13 @@ export default function PetDetails({
             </div>
 
             {/* Pet Name */}
-            <div className="w-[300px] h-20 text-center text-black text-7xl font-bold font-['Inter'] leading-[86.40px] H1">
+            <div
+                className="max-w-full h-20 text-center text-black text-7xl font-bold font-['Inter'] leading-[86.40px] H1">
                 {name}
             </div>
 
             {/* Image Section */}
-            <div className="w-[380px] h-auto bg-neutral-100 rounded-[20px] p-6 mb-8 flex flex-col gap-4">
+            <div className="w-full max-w-[90%] h-auto bg-neutral-100 rounded-[20px] p-6 mb-8 flex flex-col gap-4">
                 <div className="flex flex-col gap-2">
                     <span className="text-black text-m font-bold font-['Inter'] leading-none H3">Where Am I?</span>
                     <span className="text-black text-m font-light font-['Inter'] leading-none Body">{location}</span>
@@ -62,31 +63,37 @@ export default function PetDetails({
             </div>
 
             {/* Buttons */}
-            <div className="flex gap-8 mb-8">
-                <div className="w-[180px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg">
-                    <div className="text-white font-normal font-['Inter'] leading-normal paragraph">Fill Application</div>
+            <div className="w-full max-w-[90%] flex gap-3 mb-8">
+                <div className="w-[150px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg">
+                    <div className="text-white font-normal font-['Inter'] leading-normal paragraph">Fill Application
+                    </div>
                 </div>
-                <div className="w-[180px] p-3 bg-white/70 rounded-lg justify-center items-center gap-2 flex shadow-lg border border-primaryBlue"
+                <div
+                    className="w-[150px] p-3 bg-white/70 rounded-lg justify-center items-center gap-2 flex shadow-lg border border-primaryBlue"
                     onClick={handleVideoSessionClick}
                 >
-                    <div className="text-primaryBlue font-normal font-['Inter'] leading-normal paragraph">Video Session</div>
+                    <div className="text-primaryBlue font-normal font-['Inter'] leading-normal paragraph">Video
+                        Session
+                    </div>
                 </div>
             </div>
 
             {/* Divider */}
-            <div className="w-[380px] h-[0px] border border-[#808080]/60 mb-8"></div>
+            <div className="w-full max-w-[90%] h-[0px] border border-gray-200 mb-8"></div>
 
             {/* Story Section */}
-            <div className="w-[340px] h-auto text-[#344C64] text-xl font-normal font-['Inter'] leading-normal mb-8">
-                <h2 className="text-black text-[32px] font-semibold font-['Inter'] leading-[38.40px] mb-4 H2">My Story</h2>
+            <div
+                className="w-full max-w-[90%] h-auto text-[#344C64] text-xl font-normal font-['Inter'] leading-normal mb-8">
+                <h2 className="text-black text-[32px] font-semibold font-['Inter'] leading-[38.40px] mb-4 H2">My
+                    Story</h2>
                 <p className="text-[18px] font-['Inter'] H3 text-black">{story}</p>
             </div>
 
             {/* Divider */}
-            <div className="w-[380px] h-[0px] border border-[#808080]/60 mb-8"></div>
+            <div className="w-full max-w-[90%] h-[0px] border border-gray-200 mb-8"></div>
 
             {/* Special Attention Section */}
-            <div className="w-[344px] h-auto text-black text-xl font-normal font-['Inter'] leading-normal">
+            <div className="w-full max-w-[90%] h-auto text-black text-xl font-normal font-['Inter'] leading-normal">
                 <h2 className="text-black text-[32px] font-semibold font-['Inter'] leading-[38.40px] mb-4 H2">
                     Special Attentions
                 </h2>
