@@ -1,9 +1,11 @@
 'use client';
 import { useState } from 'react';
-import { useSearchParams } from 'next/navigation'; // Correct import for App Router
+import { useSearchParams, useRouter } from 'next/navigation'; // Correct import for App Router
 import '../../globals.css';
 
 export default function Schedule() {
+  const router = useRouter();
+
   const searchParams = useSearchParams();
   const petName = searchParams.get('petName') || 'Your pet'; // Retrieve petName from query parameters
 
@@ -153,7 +155,7 @@ export default function Schedule() {
 
   // Function to handle "Yes" button click (currently just closes the popup)
   const handleConfirm = () => {
-    // Future functionality: Redirect to another page
+    router.push('/my-profile/appointments');
     setIsPopupOpen(false);
   };
 
