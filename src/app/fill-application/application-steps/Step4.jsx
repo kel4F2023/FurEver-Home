@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const Step4 = ({ onSubmit, onBack, onQuit }) => {
+    const searchParams = useSearchParams();
+    const petName = searchParams.get("petName");
+
     const [formData, setFormData] = useState({
         medicalCommitment: "",
         veterinaryCare: "",
@@ -38,7 +42,7 @@ const Step4 = ({ onSubmit, onBack, onQuit }) => {
             </div>
 
             {/* Title Section */}
-            <h1 style={styles.title}>Application for Adopting Timber</h1>
+            <h1 style={styles.title}>Application for Adopting {petName}</h1>
 
             {/* Progress Bar */}
             <div style={styles.progressContainer}>

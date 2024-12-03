@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const Step1 = ({ onNext, onQuit }) => {
+    const searchParams = useSearchParams();
+    const petName = searchParams.get("petName");
+
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -62,7 +66,7 @@ const Step1 = ({ onNext, onQuit }) => {
             </div>
 
             {/* Title Section */}
-            <h1 style={styles.title}>Application for Adopting Timber</h1>
+            <h1 style={styles.title}>Application for Adopting {petName}</h1>
 
             {/* Progress Bar */}
             <div style={styles.progressContainer}>

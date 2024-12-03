@@ -16,6 +16,10 @@ export default function PetDetails({
 }) {
     const router = useRouter();
 
+    const handleFillApplication = () => {
+        router.push(`/fill-application?petName=${encodeURIComponent(name)}`);
+    };
+
     return (
         <div className="w-[440px] mx-auto bg-white py-8 flex flex-col items-center">
             {/* Circular Image Section */}
@@ -63,7 +67,7 @@ export default function PetDetails({
             {/* Buttons */}
             <div className="flex gap-8 mb-8">
                 <div
-                    onClick={() => router.push("/fill-application")} // Route to the application form
+                    onClick={handleFillApplication} // Route to the application form
                     className="w-[180px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg cursor-pointer"
                 >
                     <div className="text-white font-normal font-['Inter'] leading-normal paragraph">Fill Application</div>
