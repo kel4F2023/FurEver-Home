@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 
-const resecheduleVideoAppointmentPath = '/visit-shelter ';
+const resecheduleVideoAppointmentPath = '/visit-shelter';
 const resecheduleInpersonAppointmentPath = '/check-pets/video-session';
 
 export function InpersonAppointmentCard({ id, date, time, address, cancelBtnHandler }) {
@@ -16,7 +16,7 @@ export function InpersonAppointmentCard({ id, date, time, address, cancelBtnHand
                     <p className="paragraph text-center">{time}</p>
                 </div>
                 <div className='h-[99px] flex flex-col justify-evenly'>
-                    <Link className='block' href={resecheduleInpersonAppointmentPath}>
+                    <Link className='block' href={resecheduleVideoAppointmentPath}>
                         <button className='reschedule-btn paragraph'>Reschedule</button>
                     </Link>
                     <button className='cancel-btn paragrapht' onClick={() => {
@@ -47,7 +47,7 @@ export function VideoAppointmentCard({ id, date, time, petName, avatarPath, canc
                     <Link className='block' href="">
                         <button className='google-meet-btn paragraph'>Google Meet</button>
                     </Link>
-                    <Link className='block' href={resecheduleVideoAppointmentPath}>
+                    <Link className='block' href={resecheduleInpersonAppointmentPath}>
                         <button className='reschedule-btn paragraph'>Reschedule</button>
                     </Link>
                     <button className='cancel-btn paragraph' onClick={() => {
