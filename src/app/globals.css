@@ -118,6 +118,6 @@ body {
   @apply text-black text-sm font-medium font-['Inter'];
 }
 
-.inperson-avatar {
-  @apply h-[21px] px-2 bg-[#b1b1b1]/40 rounded-[15px];
+.appointment-card-avatar {
+  @apply w-[99px] h-[99px] rounded-[15px] bg-[#b1b1b1]/40;
 }
