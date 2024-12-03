@@ -70,7 +70,7 @@ export default function Appointments() {
     <div className="p-4 relative">
       <div>
         <h2 className="H2">Upcoming Appointments</h2>
-        <hr className='mb-6' />
+        <hr className='mt-2 mb-6 border-gray-300' />
         <div>
           {upcomingAppointments.length > 0 ? (upcomingAppointments.map((appointment) => (
             <div key={appointment.id} className='flex justify-center'>
@@ -98,7 +98,7 @@ export default function Appointments() {
       </div >
       <div>
         <h2 className="H2">Past Appointments</h2>
-        <hr className='mb-6' />
+        <hr className='mt-2 mb-6 border-gray-300' />
         <div>
           {pastAppointments.length > 0 ? (pastAppointments.map((appointment) => (
             <div key={appointment.id} className='flex justify-center'>
