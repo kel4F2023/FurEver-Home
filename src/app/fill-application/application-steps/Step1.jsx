@@ -23,8 +23,28 @@ const Step1 = ({ onNext, onQuit }) => {
     };
 
     const handleNext = () => {
-        if (!formData.termsAccepted) {
-            alert("Please agree to the terms and policies to proceed.");
+        const {
+            firstName,
+            lastName,
+            dateOfBirth,
+            address,
+            zipCode,
+            contactPhone,
+            contactEmail,
+            termsAccepted,
+        } = formData;
+
+        if (
+            !firstName ||
+            !lastName ||
+            !dateOfBirth ||
+            !address ||
+            !zipCode ||
+            !contactPhone ||
+            !contactEmail ||
+            !termsAccepted
+        ) {
+            alert("Please fill in all required fields and accept the terms to proceed.");
             return;
         }
 
@@ -77,7 +97,7 @@ const Step1 = ({ onNext, onQuit }) => {
             {/* Form Section */}
             <form style={styles.form}>
                 <div style={styles.field}>
-                    <label>First Name</label>
+                    <label>First Name *</label>
                     <input
                         type="text"
                         name="firstName"
@@ -89,7 +109,7 @@ const Step1 = ({ onNext, onQuit }) => {
                     />
                 </div>
                 <div style={styles.field}>
-                    <label>Last Name</label>
+                    <label>Last Name *</label>
                     <input
                         type="text"
                         name="lastName"
@@ -101,7 +121,7 @@ const Step1 = ({ onNext, onQuit }) => {
                     />
                 </div>
                 <div style={styles.field}>
-                    <label>Your Date of Birth</label>
+                    <label>Your Date of Birth *</label>
                     <input
                         type="date"
                         name="dateOfBirth"
@@ -113,7 +133,7 @@ const Step1 = ({ onNext, onQuit }) => {
                 </div>
 
                 <div style={styles.field}>
-                    <label>Address</label>
+                    <label>Address *</label>
                     <input
                         type="text"
                         name="address"
@@ -124,7 +144,7 @@ const Step1 = ({ onNext, onQuit }) => {
                     />
                 </div>
                 <div style={styles.field}>
-                    <label>Zip Code</label>
+                    <label>Zip Code *</label>
                     <input
                         type="text"
                         name="zipCode"
@@ -135,7 +155,7 @@ const Step1 = ({ onNext, onQuit }) => {
                     />
                 </div>
                 <div style={styles.field}>
-                    <label>Contact Phone</label>
+                    <label>Contact Phone *</label>
                     <input
                         type="tel"
                         name="contactPhone"
@@ -146,7 +166,7 @@ const Step1 = ({ onNext, onQuit }) => {
                     />
                 </div>
                 <div style={styles.field}>
-                    <label>Contact Email</label>
+                    <label>Contact Email *</label>
                     <input
                         type="email"
                         name="contactEmail"
@@ -167,7 +187,7 @@ const Step1 = ({ onNext, onQuit }) => {
                         style={styles.checkbox}
                         required
                     />
-                    <label>I agree to the adoption terms and shelter policies</label>
+                    <label>I agree to the adoption terms and shelter policies *</label>
                 </div>
 
                 <p style={styles.link}>
@@ -261,11 +281,11 @@ const styles = {
         marginBottom: "20px",
     },
     form: {
-        marginTop: "15px",
+        marginTop: "20px",
     },
     field: {
         fontSize: "14px",
-        marginBottom: "15px",
+        marginBottom: "20px",
     },
     input: {
         width: "100%",
@@ -276,7 +296,7 @@ const styles = {
     },
     checkboxContainer: {
         fontSize: "14px",
-        marginTop: "15px",
+        marginTop: "20px",
     },
     checkbox: {
         marginRight: "10px",

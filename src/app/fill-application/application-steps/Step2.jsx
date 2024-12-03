@@ -22,10 +22,10 @@ const Step2 = ({ onNext, onBack, onQuit }) => {
     };
 
     const handleNext = () => {
-        if (!formData.residenceType || !formData.residenceOwnership) {
-            alert("Please complete all required fields.");
-            return;
-        }
+        // if (!formData.residenceType || !formData.residenceOwnership) {
+        //     alert("Please complete all required fields.");
+        //     return;
+        // }
         onNext(formData); // Pass data to the parent for the next step
     };
 
@@ -272,11 +272,11 @@ const styles = {
         marginBottom: "20px",
     },
     form: {
-        marginTop: "15px",
+        marginTop: "20px",
     },
     field: {
         fontSize: "14px",
-        marginBottom: "15px",
+        marginBottom: "20px",
     },
     input: {
         width: "100%",
@@ -286,7 +286,7 @@ const styles = {
         borderRadius: "4px",
     },
     checkboxContainer: {
-        marginTop: "15px",
+        marginTop: "20px",
     },
     link: {
         fontSize: "14px",
@@ -322,7 +322,7 @@ const styles = {
         cursor: "pointer",
     },
     radioContainer: {
-        marginTop: "6px",
+        marginTop: "8px",
     },
     radioLabel: {
         display: "block",
@@ -345,11 +345,11 @@ const styles = {
         boxSizing: "border-box",
     },
     fileInput: {
-        marginTop: "6px",
+        marginTop: "8px",
         display: "block",
     },
     fileNote: {
-        marginTop: "6px",
+        marginTop: "8px",
     }
 };
 

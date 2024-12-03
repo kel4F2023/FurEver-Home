@@ -4,13 +4,20 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Step1 from "./application-steps/Step1";
 import Step2 from "./application-steps/Step2";
-// import Step3 from "./application-steps/Step3";
-// import Step4 from "./application-steps/Step4";
+import Step3 from "./application-steps/Step3";
+import Step4 from "./application-steps/Step4";
+import Payment from "./application-steps/Payment";
+import Submitted from "./application-steps/Submitted";
 
 // TODO: 
-// 1. Enable save state
-// 2. Refine the other two pages
-// 3. Add the terms and policy page
+// Few more things to be done: 
+// 1. Save the form data into the state
+// 2. Confirm that the style works and then implement the rest of the pages
+// 3. Refactor to make the code structure concise
+// 4. 动画 -> progress bar
+
+// explanation on missing optional features - limitations
+
 
 const Page = () => {
     const router = useRouter();
@@ -29,9 +36,9 @@ const Page = () => {
     };
 
     // Handle form submission at the final step
-    const handleSubmit = () => {
-        console.log("Final Form Data:", formData);
-        alert("Application submitted successfully!");
+    const handleSubmit = (data) => {
+        setFormData((prevData) => ({ ...prevData, ...data }));
+        setCurrentStep((prevStep) => prevStep + 1);
     };
 
     // Handle save and exit functionality
@@ -41,6 +48,11 @@ const Page = () => {
         router.push("/pet-details/1")
     };
 
+    // Handle viewing applications
+    const handleViewApplications = () => {
+        router.push("/applications");
+    };
+
     // Render the current step based on the currentStep state
     const renderStep = () => {
         switch (currentStep) {
@@ -48,10 +60,14 @@ const Page = () => {
                 return <Step1 onNext={handleNext} onQuit={handleQuit} />;
             case 2:
                 return <Step2 onNext={handleNext} onBack={handleBack} />;
-            // case 3:
-            //     return <Step3 onNext={handleNext} onBack={handleBack} />;
-            // case 4:
-            //     return <Step4 onBack={handleBack} onSubmit={handleSubmit} />;
+            case 3:
+                return <Step3 onNext={handleNext} onBack={handleBack} />;
+            case 4:
+                return <Step4 onSubmit={handleSubmit} onBack={handleBack} onQuit={handleQuit} />;
+            case 5:
+                return <Payment onSubmit={handleNext} onBack={handleBack} onQuit={handleQuit} />;
+            case 6:
+                return <Submitted onViewApplications={handleViewApplications} />;
             default:
                 return <div>Error: Unknown step</div>;
         }
