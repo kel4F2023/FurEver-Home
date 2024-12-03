@@ -1,8 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import '../globals.css';
 
 export default function Schedule() {
+  const router = useRouter();
+
   // Define some shelters in the Bay Area
   const shelters = [
     {
@@ -184,7 +187,7 @@ export default function Schedule() {
 
   // Function to handle "Yes" button click (currently just closes the popup)
   const handleConfirm = () => {
-    // Future functionality: Redirect to another page
+    router.push('/my-profile/appointments');
     setIsPopupOpen(false);
   };
 
