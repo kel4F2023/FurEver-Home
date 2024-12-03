@@ -6,7 +6,7 @@ const resecheduleInpersonAppointmentPath = '/check-pets/video-session';
 
 export function InpersonAppointmentCard({ id, date, time, address, cancelBtnHandler }) {
     return (
-        <div className='w-[386px] h-[122px] bg-white shadow-md mb-6 py-1'>
+        <div className='w-full max-w-md h-[122px] bg-white shadow-md mb-6 py-1 rounded-[15px]'>
             <div className='h-[99px] w-full flex justify-between items-center px-2'>
                 <div className='inperson-avatar'>
                     <p className='paragraph'>In-person Visit</p>
@@ -34,7 +34,7 @@ export function InpersonAppointmentCard({ id, date, time, address, cancelBtnHand
 
 export function VideoAppointmentCard({ id, date, time, petName, avatarPath, cancelBtnHandler }) {
     return (
-        <div className='w-[386px] h-[122px] bg-white shadow-md mb-6 px-2 py-1'>
+        <div className='w-full max-w-md bg-white shadow-md mb-6 p-2 rounded-[15px]'>
             <div className='w-full flex justify-between items-center'>
                 <div>
                     <img className='w-[99px] h-[99px] rounded-[15px]' src={avatarPath} alt="pet's avatar" />
