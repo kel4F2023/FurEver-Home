@@ -13,7 +13,7 @@ const applications = [
     {
         name: "Lucas",
         status: "Accepted",
-        image: "/lucas-original.png",
+        image: "/Lucas.png",
         statusColor: "#7ED321", // Green
     },
     // {
@@ -53,7 +53,7 @@ const ApplicationsPage = () => {
                         <img src={app.image} alt={app.name} style={styles.image} />
                     </div>
                     <div style={styles.info}>
-                        <p style={styles.name}>Name: {app.name}</p>
+                        <p style={styles.name}>{app.name}</p>
                         <p style={{ ...styles.status, color: app.statusColor }}>
                             Status: {app.status}
                         </p>
