@@ -39,7 +39,7 @@ export default function Appointments() {
     {
       id: uuidv4(),
       type: 'video',
-      date: '2024-11-7',
+      date: '7 Nov. 2024',
       time: '4:30 PM',
       petName: 'Hailey',
       avatarPath: '/hailey.png',

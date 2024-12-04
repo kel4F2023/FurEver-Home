@@ -57,7 +57,7 @@ export function VideoAppointmentCard({ id, date, time, petName, avatarPath, canc
                 </div>
             </div>
             <div className='px-3 my-1'>
-                <h3 className="H3">Pet Name: {petName}</h3>
+                <h3 className="H3">{petName}</h3>
             </div>
         </div>
     )
