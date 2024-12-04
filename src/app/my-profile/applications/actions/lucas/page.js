@@ -14,7 +14,7 @@ const LucasActions = () => {
         <div style={styles.container}>
             <h1 style={styles.title}>Actions Required for Lucas's Application</h1>
             <div style={styles.imageContainer}>
-                <img src="/lucas-original.png" alt="Lucas" style={styles.image} />
+                <img src="/Lucas.png" alt="Lucas" style={styles.image} />
             </div>
             <p style={styles.status}>
                 Status: <span style={styles.statusInReview}>In Review</span>

@@ -13,7 +13,7 @@ const applications = [
     {
         name: "Lucas",
         status: "Accepted",
-        image: "/lucas-original.png",
+        image: "/Lucas.png",
         statusColor: "#7ED321", // Green
     },
     // {
