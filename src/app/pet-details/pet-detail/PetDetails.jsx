@@ -2,21 +2,25 @@
 import { useRouter } from "next/navigation";
 
 export default function PetDetails({
-                                       name,
-                                       location,
-                                       age,
-                                       gender,
-                                       color,
-                                       breed,
-                                       petId,
-                                       story,
-                                       specialAttention,
-                                       image,
-                                   }) {
-                                    const router = useRouter();
-                                    const handleVideoSessionClick = () => {
-                                        router.push(`/check-pets/video-session?petName=${name}`);
-                                    };
+    name,
+    location,
+    age,
+    gender,
+    color,
+    breed,
+    petId,
+    story,
+    specialAttention,
+    image,
+}) {
+    const router = useRouter();
+    const handleVideoSessionClick = () => {
+        router.push(`/check-pets/video-session?petName=${name}`);
+    };
+    const handleFillApplication = () => {
+        router.push(`/fill-application?petName=${encodeURIComponent(name)}`);
+    };
+
     return (
         <div className="mx-auto bg-white py-8 flex flex-col items-center">
             {/* Circular Image Section */}
@@ -64,7 +68,10 @@ export default function PetDetails({
 
             {/* Buttons */}
             <div className="w-full max-w-[90%] flex gap-3 mb-8">
-                <div className="w-[150px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg">
+                <div
+                    onClick={handleFillApplication} // Route to the application form
+                    className="w-[150px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg cursor-pointer"
+                >
                     <div className="text-white font-normal font-['Inter'] leading-normal paragraph">Fill Application
                     </div>
                 </div>
