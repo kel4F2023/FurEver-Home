@@ -1,11 +1,20 @@
 'use client';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation'; // Correct import for App Router
 import '../../globals.css';
 
 export default function Schedule() {
   const router = useRouter();
 
+  // Wrap the useSearchParams hook usage in a Suspense boundary
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ScheduleContent router={router} />
+    </Suspense>
+  );
+}
+
+function ScheduleContent({ router }) {
   const searchParams = useSearchParams();
   const petName = searchParams.get('petName') || 'Your pet'; // Retrieve petName from query parameters
 
