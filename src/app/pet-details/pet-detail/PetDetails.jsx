@@ -113,7 +113,6 @@ export default function PetDetails({
                     )}
                 </div>
             </div>
-            <div className="mt-28" />
         </div>
     );
 }
