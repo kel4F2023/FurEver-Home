@@ -36,6 +36,15 @@ const ApplicationsPage = () => {
         }
     };
 
+    const handleViewSummaries = (name) => {
+        if (name === "Timber") {
+            router.push("/my-profile/applications/summaries/timber");
+        }
+        else if (name === "Lucas") {
+            router.push("/my-profile/applications/summaries/lucas");
+        }
+    };
+
     return (
         <div style={styles.container}>
             {applications.map((app, index) => (
@@ -48,7 +57,7 @@ const ApplicationsPage = () => {
                         <p style={{ ...styles.status, color: app.statusColor }}>
                             Status: {app.status}
                         </p>
-                        <button className="Primary-Button mb-4">View summary</button>
+                        <button className="Primary-Button mb-4" onClick={() => handleViewSummaries(app.name)}>View summary</button>
                         <button className="Primary-Button mb-4" onClick={() => handleViewActions(app.name)}>View actions</button>
                     </div>
                 </div>

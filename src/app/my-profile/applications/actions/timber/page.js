@@ -17,7 +17,7 @@ const TimberActions = () => {
                 <img src="/shiba.jpg" alt="Timber" style={styles.image} />
             </div>
             <p style={styles.status}>
-                Status: <span style={styles.statusAccepted}>Accepted</span>
+                Status: <span style={styles.statusInReview}>In Review</span>
             </p>
             <div style={styles.instructions}>
                 <ol style={styles.list}>
@@ -54,7 +54,7 @@ const TimberActions = () => {
                 </ol>
                 <p style={styles.paragraph}>Enjoy your time with Timber!</p>
             </div>
-            <button onClick={handleBackToApplications} className="Primary-Button mb-4">
+            <button onClick={handleBackToApplications} className="secondary-btn mb-4">
                 Back to all applications
             </button>
         </div>
@@ -93,8 +93,8 @@ const styles = {
         fontSize: "16px",
         marginBottom: "20px",
     },
-    statusAccepted: {
-        color: "#7ED321", // Green
+    statusInReview: {
+        color: "#00A9FF", // Green
         fontWeight: "bold",
     },
     instructions: {

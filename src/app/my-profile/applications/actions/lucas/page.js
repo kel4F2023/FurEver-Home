@@ -32,7 +32,7 @@ const LucasActions = () => {
                 </ol>
                 <p style={styles.paragraph}>Stay patient, and good luck!</p>
             </div>
-            <button onClick={handleBackToApplications} className="Primary-Button mb-4">
+            <button onClick={handleBackToApplications} className="secondary-btn mb-4">
                 Back to all applications
             </button>
         </div>
@@ -95,7 +95,7 @@ const styles = {
         marginTop: "15px",
     },
     backButton: {
-        className: "Primary-Button mb-4",
+        className: "secondary-btn mb-4",
         backgroundColor: "#4A90E2",
         color: "#fff",
         padding: "10px 20px",
