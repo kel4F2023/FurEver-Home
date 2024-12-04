@@ -2,10 +2,12 @@
 
 import React, { useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Step1 = ({ onNext, onQuit }) => {
     const searchParams = useSearchParams();
     const petName = searchParams.get("petName");
+    const router = useRouter();
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -54,6 +56,10 @@ const Step1 = ({ onNext, onQuit }) => {
 
         // Pass data to the parent for the next step
         onNext(formData);
+    };
+
+    const handleViewTerms = () => {
+        router.push("/terms");
     };
 
     return (
@@ -195,7 +201,7 @@ const Step1 = ({ onNext, onQuit }) => {
                 </div>
 
                 <p style={styles.link}>
-                    <a href="/terms" target="_blank" rel="noopener noreferrer">
+                    <a onClick={handleViewTerms} style={{ cursor: "pointer", color: "#007bff", textDecoration: "underline" }}>
                         Click to view terms and policies
                     </a>
                 </p>
@@ -230,10 +236,12 @@ const styles = {
         marginBottom: "20px",
     },
     saveExitButton: {
-        backgroundColor: "#e0e0e0",
+        color: "#68949D",
+        border: "1px solid #68949D",
+        backgroundColor: "#ffffff",
+        borderRadius: "10px",
+        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)",
         padding: "8px 12px",
-        borderRadius: "5px",
-        border: "none",
         cursor: "pointer",
         fontSize: "14px",
     },
@@ -260,7 +268,7 @@ const styles = {
         fontWeight: "bold",
     },
     activeCircle: {
-        backgroundColor: "#007bff", // Blue for active step
+        backgroundColor: "#00A9FF", // Blue for active step
         color: "white",
     },
     inactiveCircle: {
@@ -273,7 +281,7 @@ const styles = {
         borderRadius: "2px",
     },
     activeLine: {
-        backgroundColor: "#007bff", // Blue for active step line
+        backgroundColor: "#00A9FF", // Blue for active step line
     },
     inactiveLine: {
         backgroundColor: "#f0f0f0", // Gray for inactive step line
@@ -317,18 +325,20 @@ const styles = {
         marginTop: "20px",
     },
     quitButton: {
-        backgroundColor: "#e0e0e0",
+        color: "#68949D",
+        border: "1px solid #68949D",
+        backgroundColor: "#ffffff",
+        borderRadius: "10px",
+        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)",
         padding: "10px 20px",
-        borderRadius: "5px",
-        border: "none",
         cursor: "pointer",
     },
     nextButton: {
-        backgroundColor: "#007bff",
-        color: "#fff",
+        color: "#ffffff",
+        borderRadius: "10px",
+        backgroundColor: "#00A9FF",
+        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)",
         padding: "10px 20px",
-        borderRadius: "5px",
-        border: "none",
         cursor: "pointer",
     },
 };

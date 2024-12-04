@@ -50,7 +50,7 @@ const Page = () => {
 
     // Handle viewing applications
     const handleViewApplications = () => {
-        router.push("/applications");
+        router.push("/my-profile/applications");
     };
 
     // Render the current step based on the currentStep state
@@ -59,9 +59,9 @@ const Page = () => {
             case 1:
                 return <Step1 onNext={handleNext} onQuit={handleQuit} />;
             case 2:
-                return <Step2 onNext={handleNext} onBack={handleBack} />;
+                return <Step2 onNext={handleNext} onBack={handleBack} onQuit={handleQuit} />;
             case 3:
-                return <Step3 onNext={handleNext} onBack={handleBack} />;
+                return <Step3 onNext={handleNext} onBack={handleBack} onQuit={handleQuit} />;
             case 4:
                 return <Step4 onSubmit={handleSubmit} onBack={handleBack} onQuit={handleQuit} />;
             case 5:

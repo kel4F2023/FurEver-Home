@@ -15,7 +15,7 @@ const Submitted = ({ onViewApplications }) => {
 
             {/* View Applications Button */}
             <div style={styles.buttonContainer}>
-                <button type="button" onClick={onViewApplications} style={styles.viewButton}>
+                <button type="button" onClick={onViewApplications} className="Primary-Button mb-4">
                     View Applications
                 </button>
             </div>

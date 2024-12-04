@@ -148,10 +148,12 @@ const styles = {
         marginBottom: "20px",
     },
     saveExitButton: {
-        backgroundColor: "#e0e0e0",
+        color: "#68949D",
+        border: "1px solid #68949D",
+        backgroundColor: "#ffffff",
+        borderRadius: "10px",
+        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)",
         padding: "8px 12px",
-        borderRadius: "5px",
-        border: "none",
         cursor: "pointer",
         fontSize: "14px",
     },
@@ -178,7 +180,7 @@ const styles = {
         fontWeight: "bold",
     },
     activeCircle: {
-        backgroundColor: "#007bff",
+        backgroundColor: "#00A9FF",
         color: "white",
     },
     inactiveCircle: {
@@ -191,7 +193,7 @@ const styles = {
         borderRadius: "2px",
     },
     activeLine: {
-        backgroundColor: "#007bff",
+        backgroundColor: "#00A9FF",
     },
     inactiveLine: {
         backgroundColor: "#f0f0f0",
@@ -237,19 +239,21 @@ const styles = {
         justifyContent: "space-between",
         marginTop: "20px",
     },
-    backButton: {
-        backgroundColor: "#e0e0e0",
+    nextButton: {
+        color: "#ffffff",
+        borderRadius: "10px",
+        backgroundColor: "#00A9FF",
+        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)",
         padding: "10px 20px",
-        borderRadius: "5px",
-        border: "none",
         cursor: "pointer",
     },
-    nextButton: {
-        backgroundColor: "#007bff",
-        color: "#fff",
+    backButton: {
+        color: "#68949D",
+        border: "1px solid #68949D",
+        backgroundColor: "#ffffff",
+        borderRadius: "10px",
+        boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)",
         padding: "10px 20px",
-        borderRadius: "5px",
-        border: "none",
         cursor: "pointer",
     },
 };
