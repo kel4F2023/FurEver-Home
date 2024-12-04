@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import Step1 from "./application-steps/Step1";
 import Step2 from "./application-steps/Step2";
@@ -74,9 +74,11 @@ const Page = () => {
     };
 
     return (
-        <div style={styles.container}>
-            {renderStep()}
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+            <div style={styles.container}>
+                {renderStep()}
+            </div>
+        </Suspense>
     );
 };
 
