@@ -53,6 +53,9 @@ body {
 .H3 {
   @apply text-xl font-semibold font-sans;
 }
+.H4 {
+  @apply text-base font-semibold font-sans;
+}
 
 .Body {
   @apply text-sm font-normal font-sans text-gray-900;

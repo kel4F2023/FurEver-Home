@@ -24,7 +24,7 @@ export default function Appointments() {
       type: 'inperson',
       date: '13 Dec. 2024',
       time: '9:40 AM',
-      address: 'Avenue, city, state',
+      address: '9101 Telegraph Avenue, Oakland, CA 94612',
     },
     {
       id: uuidv4(),
