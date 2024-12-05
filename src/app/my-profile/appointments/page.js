@@ -1,12 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
 import { InpersonAppointmentCard, VideoAppointmentCard } from './components/AppointmentCard';
 import CancelConfirm from './components/CancelConfirm';
 
 export default function Appointments() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
 
@@ -46,6 +49,10 @@ export default function Appointments() {
     },
   ]);
 
+  // New state for success popup
+  const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
+
+  // Function to handle cancellation
   const cancelBtnHandler = (appointmentId) => {
     setSelectedAppointmentId(appointmentId);
     setIsPopupOpen(true);
@@ -64,6 +71,24 @@ export default function Appointments() {
   const confimCancelHandler = () => {
     removeAppointment();
     setIsPopupOpen(false);
+  };
+
+  // Handle query parameter for success popup
+  useEffect(() => {
+    const appointmentSuccess = searchParams.get('appointmentSuccess');
+    if (appointmentSuccess === 'true') {
+      setIsSuccessPopupOpen(true);
+      router.replace('/my-profile/appointments', undefined, { shallow: true });
+    }
+  }, [searchParams, router]);
+
+  // Handlers for success popup buttons
+  const handleCloseSuccessPopup = () => {
+    setIsSuccessPopupOpen(false);
+  };
+
+  const handleBackToHome = () => {
+    router.push('/');
   };
 
   return (
@@ -134,6 +159,29 @@ export default function Appointments() {
           </div>
         )
       }
+
+      {/* Success Popup */}
+      {isSuccessPopupOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 max-w-md">
+            <p className="mb-6">You successfully made the appointment!</p>
+            <div className="flex justify-end space-x-4">
+              <button
+                onClick={handleBackToHome}
+                className="w-[180px] p-3 bg-white/70 rounded-lg justify-center items-center gap-2 flex shadow-lg border border-primaryBlue"
+              >
+                Back to Home Page
+              </button>
+              <button
+                onClick={handleCloseSuccessPopup}
+                className="w-[180px] p-3 bg-[#00A9FF] rounded-lg justify-center items-center gap-2 flex shadow-lg"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div >
   );
 }
