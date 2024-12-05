@@ -26,7 +26,7 @@ export function InpersonAppointmentCard({ id, date, time, address, cancelBtnHand
                 </div>
             </div>
             <div className='px-3 my-1'>
-                <h3 className="H3">Address: {address}</h3>
+                <h4 className="H4">Address: {address}</h4>
             </div>
         </div>
     )
@@ -57,7 +57,7 @@ export function VideoAppointmentCard({ id, date, time, petName, avatarPath, canc
                 </div>
             </div>
             <div className='px-3 my-1'>
-                <h3 className="H3">{petName}</h3>
+                <h4 className="H4">{petName}</h4>
             </div>
         </div>
     )
