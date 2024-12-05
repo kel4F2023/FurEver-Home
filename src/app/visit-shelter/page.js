@@ -187,7 +187,7 @@ export default function Schedule() {
 
   // Function to handle "Yes" button click (currently just closes the popup)
   const handleConfirm = () => {
-    router.push('/my-profile/appointments');
+    router.push('/my-profile/appointments?appointmentSuccess=true');
     setIsPopupOpen(false);
   };
 
