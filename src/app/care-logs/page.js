@@ -49,9 +49,14 @@ export default function CareLogs() {
 
   const handleRecord = () => {
     // Get input values
-    const foodInput = parseFloat(document.getElementById('foodInput').value);
-    const exerciseInput = parseFloat(document.getElementById('exerciseInput').value);
-    const weightInput = parseFloat(document.getElementById('weightInput').value);
+    const foodInput = parseFloat(document.getElementById('foodInput').value) || 0;
+    const exerciseInput = parseFloat(document.getElementById('exerciseInput').value) || 0;
+    const weightInput = parseFloat(document.getElementById('weightInput').value) || 0;
+
+    if (foodInput === 0 || exerciseInput === 0 || weightInput === 0) {
+      alert('Please enter values greater than zero.'); // Simple warning
+      return;
+    }
 
     if (!isNaN(foodInput)) setFoodData((prev) => [...prev, foodInput]);
     if (!isNaN(exerciseInput)) setExerciseData((prev) => [...prev, exerciseInput]);
@@ -153,26 +158,40 @@ export default function CareLogs() {
         {/* Input VStack */}
         <div className="flex flex-col space-y-2 py-2">
           <label htmlFor="food" className="Body-Caption">Food (cups)</label>
-          <input type="number" id="foodInput" name="foodInput" className="Input" placeholder="0" disabled={areInputsDisabled} />
+          <input type="number" id="foodInput" name="foodInput" className="Input" placeholder="0" min="1" max="10" disabled={areInputsDisabled} />
 
           <label htmlFor="exerciseInput" className="Body-Caption">Exercise (min)</label>
-          <input type="number" id="exerciseInput" name="exerciseInput" className="Input" placeholder="0" disabled={areInputsDisabled} />
+          <input type="number" id="exerciseInput" name="exerciseInput" className="Input" placeholder="0" min="1" max="300" disabled={areInputsDisabled} />
 
           <label htmlFor="weightInput" className="Body-Caption">Weight (kg)</label>
-          <input type="number" id="weightInput" name="weightInput" className="Input" placeholder="0" disabled={areInputsDisabled} />
+          <input type="number" id="weightInput" name="weightInput" className="Input" placeholder="0" min="1" max="50" disabled={areInputsDisabled} />
         </div>
       </div>
 
       <AnimatePresence>
-        {isButtonVisible && (
+        {isButtonVisible ? (
           <motion.div
-            initial={{ opacity: 0, y: -10 }} // Button starts invisible and slightly above
-            animate={{ opacity: 1, y: 0 }} // Button fades in and slides down
-            exit={{ opacity: 0, y: -10 }} // Button fades out and slides up
-            transition={{ duration: 0.4, ease: 'easeInOut' }} // Smooth animation
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
           >
             <button className="Primary-Button mb-4" onClick={handleRecord}>
               Record
+            </button>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+          >
+            <button
+              className="secondary-btn mb-4"
+              onClick={() => window.location.reload()}
+            >
+              Undo
             </button>
           </motion.div>
         )}
