@@ -56,7 +56,7 @@ export default function CareLogs() {
     if (!isNaN(foodInput)) setFoodData((prev) => [...prev, foodInput]);
     if (!isNaN(exerciseInput)) setExerciseData((prev) => [...prev, exerciseInput]);
     if (!isNaN(weightInput)) setWeightData((prev) => [...prev, weightInput]);
-    setLabels((prev) => [...prev, 'Dec 4']);
+    setLabels((prev) => [...prev, 'Dec 6']);
 
     setIsButtonVisible(false);
     setAreInputsDisabled(true);
@@ -145,7 +145,7 @@ export default function CareLogs() {
         {/* VStack */}
         <div className="flex flex-col items-center space-y-2">
           <p className="H2">Daily Log</p>
-          <p className="H3">Dec 4, 2024</p>
+          <p className="H3">Dec 6, 2024</p>
           <img src="/Lucas.png" alt="Lucas" className="w-32 h-32 object-cover rounded-full" />
           <p className="H2">Lucas</p>
         </div>
