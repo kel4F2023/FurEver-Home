@@ -25,6 +25,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Tech Stack
+- **React** with `next.js`
+- **Vercel** for continous deployment
+
 ## Limitations
 - **Before testing**: FurEver Home is designed from ground up to support mobile platforms, please use a phone screen to test our MVP or if you are using a laptop, **please use the mobile inspection view.** Where the top logo icon is the home button.
 - **Care Log data**:
