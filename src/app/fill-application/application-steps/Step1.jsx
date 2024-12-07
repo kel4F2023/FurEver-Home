@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 
@@ -20,41 +20,65 @@ const Step1 = ({ onNext, onQuit }) => {
         termsAccepted: false,
     });
 
+    const [errors, setErrors] = useState({});
+
+    // Load form data from local storage on mount
+    useEffect(() => {
+        const savedFormData = localStorage.getItem("step1FormData");
+        if (savedFormData) {
+            setFormData(JSON.parse(savedFormData));
+        }
+    }, []);
+
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
-        setFormData({
+        const updatedFormData = {
             ...formData,
             [name]: type === "checkbox" ? checked : value,
+        };
+
+        setFormData(updatedFormData);
+        setErrors({
+            ...errors,
+            [name]: "",
         });
+
+        // Save to local storage
+        localStorage.setItem("step1FormData", JSON.stringify(updatedFormData));
+    };
+
+    const validateInput = () => {
+        const newErrors = {};
+
+        // Validation rules
+        if (!formData.firstName.trim()) newErrors.firstName = "First name is required.";
+        if (!formData.lastName.trim()) newErrors.lastName = "Last name is required.";
+        if (!formData.dateOfBirth) newErrors.dateOfBirth = "Date of birth is required.";
+        if (!formData.address.trim()) newErrors.address = "Address is required.";
+        if (!formData.zipCode.trim()) newErrors.zipCode = "Zip code is required.";
+
+        const phoneRegex = /^\d{10}$/;
+        if (!phoneRegex.test(formData.contactPhone)) {
+            newErrors.contactPhone = "Phone number must contain exactly 10 digits.";
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.contactEmail)) {
+            newErrors.contactEmail = "Enter a valid email address.";
+        }
+
+        if (!formData.termsAccepted) {
+            newErrors.termsAccepted = "You must accept the terms and policies.";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0; // Return true if no errors
     };
 
     const handleNext = () => {
-        const {
-            firstName,
-            lastName,
-            dateOfBirth,
-            address,
-            zipCode,
-            contactPhone,
-            contactEmail,
-            termsAccepted,
-        } = formData;
-
-        if (
-            !firstName ||
-            !lastName ||
-            !dateOfBirth ||
-            !address ||
-            !zipCode ||
-            !contactPhone ||
-            !contactEmail ||
-            !termsAccepted
-        ) {
-            alert("Please fill in all required fields and accept the terms to proceed.");
+        if (!validateInput()) {
             return;
         }
-
-        // Pass data to the parent for the next step
         onNext(formData);
     };
 
@@ -62,16 +86,18 @@ const Step1 = ({ onNext, onQuit }) => {
         router.push("/terms");
     };
 
+    const handleQuit = () => {
+        localStorage.removeItem("step1FormData");
+        onQuit();
+    };
+
     return (
         <div style={styles.container}>
-            {/* Save & Exit Button */}
             <div style={styles.header}>
-                <button onClick={onQuit} style={styles.saveExitButton}>
+                <button onClick={handleQuit} style={styles.saveExitButton}>
                     Save & Exit
                 </button>
             </div>
-
-            {/* Title Section */}
             <h1 style={styles.title}>Application for Adopting {petName}</h1>
 
             {/* Progress Bar */}
@@ -105,7 +131,7 @@ const Step1 = ({ onNext, onQuit }) => {
             <h2 style={styles.subtitle}>Personal & Contact Information</h2>
 
             {/* Form Section */}
-            <form style={styles.form}>
+            <form style={styles.form} noValidate>
                 <div style={styles.field}>
                     <label>First Name *</label>
                     <input
@@ -115,8 +141,8 @@ const Step1 = ({ onNext, onQuit }) => {
                         onChange={handleInputChange}
                         placeholder="Enter your first name"
                         style={styles.input}
-                        required
                     />
+                    {errors.firstName && <p style={styles.errorText}>{errors.firstName}</p>}
                 </div>
                 <div style={styles.field}>
                     <label>Last Name *</label>
@@ -127,8 +153,8 @@ const Step1 = ({ onNext, onQuit }) => {
                         onChange={handleInputChange}
                         placeholder="Enter your last name"
                         style={styles.input}
-                        required
                     />
+                    {errors.lastName && <p style={styles.errorText}>{errors.lastName}</p>}
                 </div>
                 <div style={styles.field}>
                     <label>Your Date of Birth *</label>
@@ -138,10 +164,9 @@ const Step1 = ({ onNext, onQuit }) => {
                         value={formData.dateOfBirth}
                         onChange={handleInputChange}
                         style={styles.input}
-                        required
                     />
+                    {errors.dateOfBirth && <p style={styles.errorText}>{errors.dateOfBirth}</p>}
                 </div>
-
                 <div style={styles.field}>
                     <label>Address *</label>
                     <input
@@ -152,6 +177,7 @@ const Step1 = ({ onNext, onQuit }) => {
                         placeholder="Enter your address"
                         style={styles.input}
                     />
+                    {errors.address && <p style={styles.errorText}>{errors.address}</p>}
                 </div>
                 <div style={styles.field}>
                     <label>Zip Code *</label>
@@ -163,6 +189,7 @@ const Step1 = ({ onNext, onQuit }) => {
                         placeholder="Enter your zip code"
                         style={styles.input}
                     />
+                    {errors.zipCode && <p style={styles.errorText}>{errors.zipCode}</p>}
                 </div>
                 <div style={styles.field}>
                     <label>Contact Phone *</label>
@@ -174,6 +201,7 @@ const Step1 = ({ onNext, onQuit }) => {
                         placeholder="Enter your contact phone"
                         style={styles.input}
                     />
+                    {errors.contactPhone && <p style={styles.errorText}>{errors.contactPhone}</p>}
                 </div>
                 <div style={styles.field}>
                     <label>Contact Email *</label>
@@ -185,9 +213,8 @@ const Step1 = ({ onNext, onQuit }) => {
                         placeholder="Enter your contact email"
                         style={styles.input}
                     />
+                    {errors.contactEmail && <p style={styles.errorText}>{errors.contactEmail}</p>}
                 </div>
-
-                {/* Terms and Agreement */}
                 <div style={styles.checkboxContainer}>
                     <input
                         type="checkbox"
@@ -195,20 +222,24 @@ const Step1 = ({ onNext, onQuit }) => {
                         checked={formData.termsAccepted}
                         onChange={handleInputChange}
                         style={styles.checkbox}
-                        required
                     />
                     <label>I agree to the adoption terms and shelter policies *</label>
+                    {errors.termsAccepted && <p style={styles.errorText}>{errors.termsAccepted}</p>}
                 </div>
-
                 <p style={styles.link}>
-                    <a onClick={handleViewTerms} style={{ cursor: "pointer", color: "#007bff", textDecoration: "underline" }}>
+                    <a
+                        onClick={handleViewTerms}
+                        style={{
+                            cursor: "pointer",
+                            color: "#007bff",
+                            textDecoration: "underline",
+                        }}
+                    >
                         Click to view terms and policies
                     </a>
                 </p>
-
-                {/* Navigation Buttons */}
                 <div style={styles.buttonContainer}>
-                    <button type="button" onClick={onQuit} style={styles.quitButton}>
+                    <button type="button" onClick={handleQuit} style={styles.quitButton}>
                         Quit
                     </button>
                     <button type="button" onClick={handleNext} style={styles.nextButton}>
@@ -340,6 +371,11 @@ const styles = {
         boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)",
         padding: "10px 20px",
         cursor: "pointer",
+    },
+    errorText: {
+        color: "red",
+        fontSize: "12px",
+        marginTop: "5px",
     },
 };
 
