@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 const Step2 = ({ onNext, onBack, onQuit }) => {
@@ -17,19 +17,30 @@ const Step2 = ({ onNext, onBack, onQuit }) => {
         proofOfIncome: null,
     });
 
+    useEffect(() => {
+        const savedFormData = localStorage.getItem("step2FormData");
+        if (savedFormData) {
+            setFormData(JSON.parse(savedFormData));
+        }
+    }, []);
+
     const handleInputChange = (e) => {
         const { name, value, type, files } = e.target;
-        setFormData({
+
+        let updatedFormData = {
             ...formData,
             [name]: type === "file" ? files[0] : value,
+        };
+
+        setFormData({
+            ...updatedFormData,
+            [name]: type === "file" ? files[0] : value,
         });
+
+        localStorage.setItem("step2FormData", JSON.stringify(updatedFormData));
     };
 
     const handleNext = () => {
-        // if (!formData.residenceType || !formData.residenceOwnership) {
-        //     alert("Please complete all required fields.");
-        //     return;
-        // }
         onNext(formData); // Pass data to the parent for the next step
     };
 

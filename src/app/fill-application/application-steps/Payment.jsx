@@ -10,19 +10,53 @@ const Payment = ({ onSubmit, onBack, onQuit }) => {
         billingAddress: "",
     });
 
+    const [errors, setErrors] = useState({});
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setPaymentData({
             ...paymentData,
             [name]: value,
         });
+        setErrors({
+            ...errors,
+            [name]: "",
+        }); // Clear errors on input change
+    };
+
+    const validateInput = () => {
+        const newErrors = {};
+
+        // Card Number must not be empty and should contain only digits
+        if (!paymentData.cardNumber.trim()) {
+            newErrors.cardNumber = "Card number is required.";
+        } else if (!/^\d+$/.test(paymentData.cardNumber)) {
+            newErrors.cardNumber = "Card number must contain only digits.";
+        }
+
+        // Card Name must not be empty
+        if (!paymentData.cardName.trim()) {
+            newErrors.cardName = "Name on the card is required.";
+        }
+
+        // Security Number must not be empty and should be exactly 3 digits
+        if (!paymentData.securityNumber.trim()) {
+            newErrors.securityNumber = "Security number is required.";
+        } else if (!/^\d{3}$/.test(paymentData.securityNumber)) {
+            newErrors.securityNumber = "Security number must be exactly 3 digits.";
+        }
+
+        // Billing Address must not be empty
+        if (!paymentData.billingAddress.trim()) {
+            newErrors.billingAddress = "Billing address is required.";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0; // Return true if no errors
     };
 
     const handleSubmit = () => {
-        const { cardNumber, cardName, securityNumber, billingAddress } = paymentData;
-
-        if (!cardNumber || !cardName || !securityNumber || !billingAddress) {
-            alert("Please complete all required fields.");
+        if (!validateInput()) {
             return;
         }
 
@@ -43,7 +77,7 @@ const Payment = ({ onSubmit, onBack, onQuit }) => {
             <h2 style={styles.balance}>Balance Due: $30</h2>
 
             {/* Form Section */}
-            <form style={styles.form}>
+            <form style={styles.form} noValidate>
                 <div style={styles.field}>
                     <label>Card Number *</label>
                     <input
@@ -54,6 +88,7 @@ const Payment = ({ onSubmit, onBack, onQuit }) => {
                         placeholder="Enter card number"
                         style={styles.input}
                     />
+                    {errors.cardNumber && <p style={styles.errorText}>{errors.cardNumber}</p>}
                 </div>
 
                 <div style={styles.field}>
@@ -66,6 +101,7 @@ const Payment = ({ onSubmit, onBack, onQuit }) => {
                         placeholder="Enter name"
                         style={styles.input}
                     />
+                    {errors.cardName && <p style={styles.errorText}>{errors.cardName}</p>}
                 </div>
 
                 <div style={styles.field}>
@@ -78,6 +114,7 @@ const Payment = ({ onSubmit, onBack, onQuit }) => {
                         placeholder="Enter security number"
                         style={styles.input}
                     />
+                    {errors.securityNumber && <p style={styles.errorText}>{errors.securityNumber}</p>}
                 </div>
 
                 <div style={styles.field}>
@@ -90,6 +127,7 @@ const Payment = ({ onSubmit, onBack, onQuit }) => {
                         placeholder="Enter billing address"
                         style={styles.input}
                     />
+                    {errors.billingAddress && <p style={styles.errorText}>{errors.billingAddress}</p>}
                 </div>
 
                 {/* Navigation Buttons */}
@@ -179,6 +217,11 @@ const styles = {
         boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)",
         padding: "10px 20px",
         cursor: "pointer",
+    },
+    errorText: {
+        color: "red",
+        fontSize: "12px",
+        marginTop: "5px",
     },
 };
 

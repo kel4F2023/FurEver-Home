@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 const Step3 = ({ onNext, onBack, onQuit }) => {
@@ -15,26 +15,53 @@ const Step3 = ({ onNext, onBack, onQuit }) => {
         petExperience: "",
     });
 
+    const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        const savedFormData = localStorage.getItem("step3FormData");
+        if (savedFormData) {
+            setFormData(JSON.parse(savedFormData));
+        }
+    }, []);
+
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
+        let updatedFormData;
+
         if (type === "checkbox") {
-            setFormData((prevData) => ({
-                ...prevData,
+            updatedFormData = {
+                ...formData,
                 adoptionReasons: checked
-                    ? [...prevData.adoptionReasons, value]
-                    : prevData.adoptionReasons.filter((reason) => reason !== value),
-            }));
+                    ? [...formData.adoptionReasons, value]
+                    : formData.adoptionReasons.filter((reason) => reason !== value),
+            };
         } else {
-            setFormData({
+            updatedFormData = {
                 ...formData,
                 [name]: value,
-            });
+            };
         }
+
+        setFormData(updatedFormData);
+        setErrors({ ...errors, adoptionReasons: "" }); // Clear error when input changes
+
+        localStorage.setItem("step3FormData", JSON.stringify(updatedFormData));
+    };
+
+    const validateInput = () => {
+        const newErrors = {};
+
+        // Validate at least one adoption reason is selected
+        if (formData.adoptionReasons.length === 0) {
+            newErrors.adoptionReasons = "Please select at least one reason for adopting the pet.";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0; // Return true if no errors
     };
 
     const handleNext = () => {
-        if (formData.adoptionReasons.length === 0) {
-            alert("Please select at least one reason for adopting the pet.");
+        if (!validateInput()) {
             return;
         }
         onNext(formData); // Pass data to the parent for the next step
@@ -83,7 +110,13 @@ const Step3 = ({ onNext, onBack, onQuit }) => {
             <form style={styles.form}>
                 <div style={styles.field}>
                     <label style={styles.checkboxTitle}>Reason for adopting the pet (choose all that applies) *</label>
-                    {["Companionship", "Rescue and Care", "Therapeutic Support", "Activity Partner", "Personal Fulfillment"].map((reason) => (
+                    {[
+                        "Companionship",
+                        "Rescue and Care",
+                        "Therapeutic Support",
+                        "Activity Partner",
+                        "Personal Fulfillment",
+                    ].map((reason) => (
                         <label key={reason} style={styles.checkboxLabel}>
                             <input
                                 type="checkbox"
@@ -114,6 +147,7 @@ const Step3 = ({ onNext, onBack, onQuit }) => {
                         placeholder="Specify other reasons"
                         style={styles.textarea}
                     />
+                    {errors.adoptionReasons && <p style={styles.errorText}>{errors.adoptionReasons}</p>}
                 </div>
 
                 <div style={styles.field}>
@@ -288,6 +322,11 @@ const styles = {
         boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)",
         padding: "10px 20px",
         cursor: "pointer",
+    },
+    errorText: {
+        color: "red",
+        fontSize: "12px",
+        marginTop: "5px",
     },
 };
 

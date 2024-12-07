@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 const Step4 = ({ onSubmit, onBack, onQuit }) => {
@@ -13,22 +13,51 @@ const Step4 = ({ onSubmit, onBack, onQuit }) => {
         fullName: "",
     });
 
+    const [errors, setErrors] = useState({});
+
+    useEffect(() => {
+        const savedFormData = localStorage.getItem("step4FormData");
+        if (savedFormData) {
+            setFormData(JSON.parse(savedFormData));
+        }
+    }, []);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
+        let updatedFormData = {
             ...formData,
             [name]: value,
-        });
+        };
+
+        setFormData(updatedFormData);
+        setErrors({ ...errors, adoptionReasons: "" }); // Clear error when input changes
+
+        localStorage.setItem("step4FormData", JSON.stringify(updatedFormData));
+    };
+
+    const validateInput = () => {
+        const newErrors = {};
+
+        if (!formData.medicalCommitment) {
+            newErrors.medicalCommitment = "You must commit to handling medical or behavioral issues.";
+        }
+
+        if (!formData.veterinaryCare) {
+            newErrors.veterinaryCare = "You must agree to provide regular veterinary care.";
+        }
+
+        if (!formData.fullName.trim()) {
+            newErrors.fullName = "Full name is required to agree to the terms.";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0; // Return true if no errors
     };
 
     const handleSubmit = () => {
-        const { medicalCommitment, veterinaryCare, fullName } = formData;
-
-        if (!medicalCommitment || !veterinaryCare || !fullName) {
-            alert("Please complete all required fields.");
-            return;
+        if (!validateInput()) {
+            return; // Do not proceed if validation fails
         }
-
         onSubmit(formData); // Pass data to the parent for submission
     };
 
@@ -72,7 +101,7 @@ const Step4 = ({ onSubmit, onBack, onQuit }) => {
             <h2 style={styles.subtitle}>Commitment, References, and Final Agreement</h2>
 
             {/* Form Section */}
-            <form style={styles.form}>
+            <form style={styles.form} noValidate>
                 <div style={styles.field}>
                     <label>Will you commit to handle potential medical or behavioral issues of the adopted pet? *</label>
                     <div style={styles.radioContainer}>
@@ -88,6 +117,7 @@ const Step4 = ({ onSubmit, onBack, onQuit }) => {
                             Yes
                         </label>
                     </div>
+                    {errors.medicalCommitment && <p style={styles.errorText}>{errors.medicalCommitment}</p>}
                 </div>
 
                 <div style={styles.field}>
@@ -105,6 +135,7 @@ const Step4 = ({ onSubmit, onBack, onQuit }) => {
                             Yes
                         </label>
                     </div>
+                    {errors.veterinaryCare && <p style={styles.errorText}>{errors.veterinaryCare}</p>}
                 </div>
 
                 <div style={styles.field}>
@@ -116,6 +147,7 @@ const Step4 = ({ onSubmit, onBack, onQuit }) => {
                         placeholder="Enter your full name"
                         style={styles.textarea}
                     />
+                    {errors.fullName && <p style={styles.errorText}>{errors.fullName}</p>}
                 </div>
 
                 {/* Navigation Buttons */}
@@ -255,6 +287,11 @@ const styles = {
         boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.15)",
         padding: "10px 20px",
         cursor: "pointer",
+    },
+    errorText: {
+        color: "red",
+        fontSize: "12px",
+        marginTop: "5px",
     },
 };
 
