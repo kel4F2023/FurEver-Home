@@ -67,6 +67,11 @@ const Step1 = ({ onNext, onQuit }) => {
             newErrors.contactEmail = "Enter a valid email address.";
         }
 
+        const zipRegex = /^\d{5}$/;
+        if (!zipRegex.test(formData.zipCode)) {
+            newErrors.zipCode = "Zip code must contain exactly 5 digits."
+        }
+
         if (!formData.termsAccepted) {
             newErrors.termsAccepted = "You must accept the terms and policies.";
         }
