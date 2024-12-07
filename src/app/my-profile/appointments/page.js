@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, useEffect, Suspense} from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
 import { InpersonAppointmentCard, VideoAppointmentCard } from './components/AppointmentCard';
 import CancelConfirm from './components/CancelConfirm';
+import CancelSuccessPopup from './components/CancelSuccessPopup';
 
 // SuccessPopup Component (as defined above)
 function SuccessPopup({ onClose, onBackToHome }) {
@@ -59,6 +60,7 @@ function SuccessPopup({ onClose, onBackToHome }) {
 export default function Appointments() {
   const router = useRouter();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isCancelSuccessPopupOpen, setIsCancelSuccessPopupOpen] = useState(false);
   const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
 
   const [upcomingAppointments, setUpcomingAppointments] = useState([
@@ -111,7 +113,13 @@ export default function Appointments() {
     console.log('Removing appointment with id:', selectedAppointmentId);
     setUpcomingAppointments(upcomingAppointments.filter((appointment) => appointment.id !== selectedAppointmentId));
     setPastAppointments(pastAppointments.filter((appointment) => appointment.id !== selectedAppointmentId));
+    // open remove appointment success popup
+    setIsCancelSuccessPopupOpen(true);
   };
+
+  const closeCancelSuccessPopup = () => {
+    setIsCancelSuccessPopupOpen(false);
+  }
 
   const confimCancelHandler = () => {
     removeAppointment();
@@ -119,7 +127,7 @@ export default function Appointments() {
   };
 
   // Handlers for success popup buttons
-  const handleCloseSuccessPopup = () => {};
+  const handleCloseSuccessPopup = () => { };
 
   const handleBackToHome = () => {
     router.push('/');
@@ -189,6 +197,16 @@ export default function Appointments() {
             <CancelConfirm
               cancelCancelHandler={cancelCancelHandler}
               confimCancelHandler={confimCancelHandler}
+            />
+          </div>
+        )
+      }
+
+      {
+        isCancelSuccessPopupOpen && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <CancelSuccessPopup
+              closeCancelSuccessPopup={closeCancelSuccessPopup}
             />
           </div>
         )
